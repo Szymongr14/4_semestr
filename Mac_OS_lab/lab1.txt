@@ -88,13 +88,6 @@ for value in all_numbers{
 }
 print(new_array)
 print("\n\n")
-// var all_numbers:[Int] = [10,20,10,11,13,20,10,30]
-// var unique_numbers: Set<Int> = []
-// for i in stride(from: 0, through:all_numbers.count-1,by: 1){
-//   unique_numbers.insert(all_numbers[i])
-// }
-// print(unique_numbers)
-// print("\n\n")
 
 //zad 10
 
