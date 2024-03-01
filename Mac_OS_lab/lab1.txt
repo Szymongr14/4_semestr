@@ -1,0 +1,157 @@
+import Foundation
+
+//zad 1
+
+var x = 10
+var y = 30
+
+print(x,"+", y, "=", x+y)
+print("\n\n")
+
+//zad 2
+
+var text = "Gdansk University of Technology"
+var new_text = ""
+
+for char in text{
+  if char == "n"{
+    new_text.append("⭐️")
+    continue
+  }
+  new_text.append(char)
+}
+
+print(new_text)
+print("\n\n")
+
+//zad 3
+
+var name = "Szymon Groszkowski"
+
+for i in stride(from: name.count - 1, through: 0, by: -1){
+  let index = name.index(name.startIndex, offsetBy: i)
+  print(name[index], terminator: "")
+}
+print("\n\n")
+
+//zad 4
+text = "I will pass this course with best mark, because Swift is great!"
+var i = 0
+while i < 12{
+  print(text)
+  i+=1
+}
+print("\n\n")
+//zad 5
+
+var N = 4
+
+for i in 1...N{
+  print(i*i)
+}
+print("\n\n")
+//zad 6
+
+for _ in 0..<N{
+  for _ in 0..<N{
+    print("@", terminator:"")
+  }
+  print("\n")
+}
+print("\n\n")
+//zad 7
+
+var numbers:[Int] = [5,10,20,15,80,13]
+
+if let maxNumber = numbers.max() {
+    print("The maximum number in array is \(maxNumber)")
+} else {
+    print("The array is empty.")
+}
+print("\n\n")
+//zad 8
+
+for i in stride(from: numbers.count - 1, through: 0, by: -1) {
+    print(numbers[i], ",", terminator:"")
+}
+print("\n\n")
+
+//zad9
+var all_numbers:[Int] = [10,20,10,11,13,20,10,30]
+var new_array:[Int] = []
+
+for value in all_numbers{
+  if new_array.contains(value){
+    continue
+  }
+  new_array.append(value)
+}
+print(new_array)
+print("\n\n")
+// var all_numbers:[Int] = [10,20,10,11,13,20,10,30]
+// var unique_numbers: Set<Int> = []
+// for i in stride(from: 0, through:all_numbers.count-1,by: 1){
+//   unique_numbers.insert(all_numbers[i])
+// }
+// print(unique_numbers)
+// print("\n\n")
+
+//zad 10
+
+var number = 10
+
+var divisors:Set<Int> = []
+
+var a = 1
+while a <= number{
+  if number % a == 0 {
+    divisors.insert(a)
+  }
+  a+=1
+}
+
+print(divisors)
+
+
+//zad 11
+	var flights: [[String: String]] = [
+    [
+        "flightNumber" : "AA8025",
+        "destination" : "Copenhagen"
+    ],
+    [
+        "flightNumber" : "BA1442",
+        "destination" : "New York"
+    ],
+    [
+        "flightNumber" : "BD6741",
+        "destination" : "Barcelona"
+    ]
+]
+
+
+var flight_numbers: [String] = []
+
+for flight in flights{
+  if let flight_number = flight["flightNumber"]{
+    flight_numbers.append(flight_number)
+  }
+}
+
+print(flight_numbers)
+
+
+//zad 12
+var names = ["Hommer","Lisa","Bart"]
+var last_name: String = "Simpson"
+
+var full_names: [[String:String]] = []
+
+for name in names{
+  let full_name: [String:String] = ["lastName": last_name, "firstName": name]
+  full_names.append(full_name)
+}
+
+print(full_names)
+
+
