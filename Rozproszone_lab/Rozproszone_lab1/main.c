@@ -54,6 +54,7 @@ int main() {
     int q1 = 12;
     int b = 7;
 
+
     //showing insert function
     insert(&manager, (void *) &x);
     insert(&manager, (void *) &y);
