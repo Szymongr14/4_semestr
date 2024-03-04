@@ -3,7 +3,7 @@ package org.example;
 import java.util.Objects;
 import java.util.Set;
 
-public class Employee {
+public class Employee implements Comparable<Employee>{
 
     private String name;
     private int age;
@@ -16,7 +16,31 @@ public class Employee {
         this.salary = salary;
         this.subordinates = subordinates;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", salary=" + salary +
+                ", subordinates=" + subordinates +
+                '}';
+    }
+
+    @Override
+    public int compareTo(Employee o) {
+        int nameCompare = this.name.compareTo(o.name);
+        if(nameCompare != 0){
+            return nameCompare;
+        }
+
+        int ageCompare = Integer.compare(this.age, o.age);
+        if(ageCompare != 0){
+            return ageCompare;
+        }
+
+        return Double.compare(this.salary, o.salary);
+    }
 
     public String getName() {
         return name;

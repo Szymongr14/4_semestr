@@ -39,16 +39,16 @@ y_test = test_data['MPG'].to_numpy()
 x_test = test_data['Weight'].to_numpy()
 
 # TODO: calculate closed-form solution
-# create ones column vector
+
+# create ones column
 ones_column = np.ones((len(x_train), 1))
 # stack ones column with x_train
 x_train_with_ones = np.hstack((ones_column, x_train.reshape(-1, 1)))
-
+# counting theta using normal equation
 theta_best = np.linalg.inv(x_train_with_ones.T.dot(x_train_with_ones)).dot(x_train_with_ones.T).dot(y_train)
-print(theta_best)
+print("Theta_best for Normal Equation method: ", theta_best)
+
 # TODO: calculate error
-mse = count_mse(x_train_with_ones, y_train)
-print("MSE with normal equation for training set is: ", mse)
 
 x_test_with_ones_column = np.hstack((np.ones((len(x_test), 1)), x_test.reshape(-1, 1)))
 mse = count_mse(x_test_with_ones_column, y_test)
@@ -58,6 +58,7 @@ print("MSE with normal equation for test set is: ", mse)
 plot_graph("Normal equation")
 
 # TODO: standardization
+# counting mean and standard deviation for x_train and y_train
 train_x_mean = np.mean(x_train)
 train_x_std = np.std(x_train)
 train_y_mean = np.mean(y_train)
@@ -65,29 +66,35 @@ train_y_std = np.std(y_train)
 
 train_x_normalized = (x_train - train_x_mean) / train_x_std
 train_y_normalized = (y_train - train_y_mean) / train_y_std
+
+# standardization x_test and y_test with train set mean and standard deviation
 x_test = (x_test - train_x_mean) / train_x_std
 y_test = (y_test - train_y_mean) / train_y_std
+
 # TODO: calculate theta using Batch Gradient Descent
+
 theta_best = np.random.rand(2)
 learning_rate = 0.01
 train_x_normalized = np.hstack((ones_column, train_x_normalized.reshape(-1, 1)))
-test = 1.0e-5
+treshold = 1.0e-5
 theta_best_prev = theta_best
-for i in range(1000):
+iterations = 0
+
+while True:
+    iterations += 1
     gradients = 2 / len(x_train) * train_x_normalized.T.dot(train_x_normalized.dot(theta_best) - train_y_normalized)
     theta_best = theta_best - learning_rate * gradients
-    # if abs(theta_best_prev - theta_best) <= test:
-    #         break
+    if abs(theta_best_prev - theta_best).all() <= treshold:
+        break
+    theta_best_prev = theta_best
 
 # theta_best = [0,0]
 # TODO: calculate error
-mse = count_mse(train_x_normalized, train_y_normalized)
-print("MSE with gradient descent for training set is: ", mse)
 
 x_test_with_ones_column_normalized = np.hstack((np.ones((len(x_test), 1)), x_test.reshape(-1, 1)))
 mse = count_mse(x_test_with_ones_column_normalized, y_test)
-print("MSE with gradient descent for test set is: ", mse)
+print("MSE with gradient descent (iterations:", iterations, ") for test set is: ", mse)
 
-print(theta_best)
+print("Theta_best for Batch Gradient Descent method: ", theta_best)
 # plot the regression line
 plot_graph("Gradient Descent")
