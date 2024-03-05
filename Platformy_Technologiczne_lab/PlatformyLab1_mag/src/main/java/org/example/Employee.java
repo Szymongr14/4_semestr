@@ -19,10 +19,10 @@ public class Employee implements Comparable<Employee>{
 
     @Override
     public String toString() {
-        return "Employee{" +
+        return "Mage{" +
                 "name='" + name + '\'' +
-                ", age=" + age +
-                ", salary=" + salary +
+                ", level=" + age +
+                ", power=" + salary +
                 '}';
     }
 

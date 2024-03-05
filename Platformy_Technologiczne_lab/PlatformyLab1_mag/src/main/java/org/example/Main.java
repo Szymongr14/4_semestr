@@ -4,13 +4,10 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
-import static org.example.Employee.getHightOfSubordinatesTree;
-
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
         String programArgument = args[0];
-
         Set<Employee>andySubordinates;
         Set<Employee>garrySubordinates;
         Set<Employee>marthaSubordinates;
@@ -23,6 +20,7 @@ public class Main {
                 andySubordinates = new TreeSet<>();
                 garrySubordinates = new TreeSet<>();
                 marthaSubordinates = new TreeSet<>();
+                break;
             case "alternative":
 //                //funkcja lambda
 //                employeeSet = new TreeSet<>(new Comparator<Employee>() {
@@ -36,11 +34,13 @@ public class Main {
                 andySubordinates = new TreeSet<>(new EmployeeComparator());
                 garrySubordinates = new TreeSet<>(new EmployeeComparator());
                 marthaSubordinates = new TreeSet<>(new EmployeeComparator());
+                break;
             default:
                 employeeSet = new HashSet<>();
                 andySubordinates = new HashSet<>();
                 garrySubordinates = new HashSet<>();
                 marthaSubordinates = new HashSet<>();
+                break;
         };
 
         Employee employee = new Employee("John", 30, 3000);
