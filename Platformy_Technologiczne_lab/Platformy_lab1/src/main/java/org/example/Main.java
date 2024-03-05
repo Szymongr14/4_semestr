@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
+import static org.example.Employee.getHightOfSubordinatesTree;
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
@@ -23,16 +25,16 @@ public class Main {
             default -> new HashSet<>();
         };
 
-        Employee employee = new Employee("John", 30, 3000, null);
-        Employee employee2 = new Employee("Ben", 25, 2400, null);
-        Employee employee3 = new Employee("Maria", 25, 2490, null);
-        Employee employee4 = new Employee("Arthur", 55, 2900, null);
-        Employee employee5 = new Employee("Monica", 35, 4400, null);
-        Employee employee6 = new Employee("Adam", 29, 4400, null);
-        Employee employee7 = new Employee("Garry", 26, 4800, null);
-        Employee employee8 = new Employee("Martha", 37, 3700, null);
-        Employee employee9 = new Employee("Andy", 47, 7400, null);
-        Employee employee10 = new Employee("Pep", 22, 2000, null);
+        Employee employee = new Employee("John", 30, 3000);
+        Employee employee2 = new Employee("Ben", 25, 2400);
+        Employee employee3 = new Employee("Maria", 25, 2490);
+        Employee employee4 = new Employee("Arthur", 55, 2900);
+        Employee employee5 = new Employee("Monica", 35, 4400);
+        Employee employee6 = new Employee("Adam", 29, 4400);
+        Employee employee7 = new Employee("Garry", 26, 4800);
+        Employee employee8 = new Employee("Martha", 37, 3700);
+        Employee employee9 = new Employee("Andy", 47, 7400);
+        Employee employee10 = new Employee("Pep", 22, 2000);
 
         employeeSet.add(employee);
         employeeSet.add(employee2);
@@ -45,7 +47,39 @@ public class Main {
         employeeSet.add(employee9);
         employeeSet.add(employee10);
 
+        Set<Employee>andySubordinates = new HashSet<>();
+        andySubordinates.add(employee);
+        andySubordinates.add(employee2);
+        andySubordinates.add(employee3);
+        andySubordinates.add(employee4);
+        andySubordinates.add(employee5);
+        andySubordinates.add(employee6);
+        andySubordinates.add(employee7);
+        andySubordinates.add(employee8);
+        andySubordinates.add(employee10);
+        employee9.getSubordinates().addAll(andySubordinates);
 
-        //stworzenie hierarchi
+        Set<Employee>garrySubordinates = new HashSet<>();
+        garrySubordinates.add(employee);
+        garrySubordinates.add(employee2);
+        garrySubordinates.add(employee3);
+        garrySubordinates.add(employee8);
+//        employee7.getSubordinates().addAll(garrySubordinates);
+
+        Set<Employee>marthaSubordinates = new HashSet<>();;
+        marthaSubordinates.add(employee7);
+        marthaSubordinates.add(employee10);
+//        employee8.getSubordinates().addAll(marthaSubordinates);
+
+
+//        System.out.println(employee9);
+        System.out.println(getHightOfSubordinatesTree(employee9));
+        System.out.println(getHightOfSubordinatesTree(employee));
+        employee9.print();
+
+
+//        for (Employee e : employeeSet) {
+//            System.out.println(e);
+//        }
     }
 }

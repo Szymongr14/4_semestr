@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -10,11 +11,11 @@ public class Employee implements Comparable<Employee>{
     private double salary;
     private Set<Employee> subordinates;
 
-    public Employee(String name, int age, double salary, Set<Employee> subordinates) {
+    public Employee(String name, int age, double salary) {
         this.name = name;
         this.age = age;
         this.salary = salary;
-        this.subordinates = subordinates;
+        this.subordinates = new HashSet<Employee>();
     }
 
     @Override
@@ -23,8 +24,17 @@ public class Employee implements Comparable<Employee>{
                 "name='" + name + '\'' +
                 ", age=" + age +
                 ", salary=" + salary +
-                ", subordinates=" + subordinates +
                 '}';
+    }
+
+    public void print(){
+        for(int i=0;i<getHightOfSubordinatesTree(this)+1;i++){
+            System.out.print("-");
+        }
+        System.out.println(this);
+        for(Employee e : this.getSubordinates()){
+            e.print();
+        }
     }
 
     @Override
@@ -40,6 +50,19 @@ public class Employee implements Comparable<Employee>{
         }
 
         return Double.compare(this.salary, o.salary);
+    }
+
+    static public int getHightOfSubordinatesTree(Employee employee){
+        if(employee.getSubordinates().size() == 0){
+            return 0;
+        }
+        else{
+            int childrenMaxHeight = 0;
+            for(Employee e : employee.getSubordinates()){
+                childrenMaxHeight = Math.max(childrenMaxHeight, getHightOfSubordinatesTree(e));
+            }
+            return 1 + childrenMaxHeight;
+        }
     }
 
     public String getName() {
