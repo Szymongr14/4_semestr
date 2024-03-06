@@ -22,14 +22,6 @@ public class Main {
                 marthaSubordinates = new TreeSet<>();
                 break;
             case "alternative":
-//                //funkcja lambda
-//                employeeSet = new TreeSet<>(new Comparator<Employee>() {
-//                    @Override
-//                    public int compare(Employee o1, Employee o2) {
-//                        return 0;
-//                    }
-//                });
-
                 employeeSet = new TreeSet<>(new EmployeeComparator());
                 andySubordinates = new TreeSet<>(new EmployeeComparator());
                 garrySubordinates = new TreeSet<>(new EmployeeComparator());
@@ -65,15 +57,9 @@ public class Main {
         employeeSet.add(employee9);
         employeeSet.add(employee10);
 
-//        andySubordinates.add(employee);
-//        andySubordinates.add(employee2);
-//        andySubordinates.add(employee3);
         andySubordinates.add(employee4);
         andySubordinates.add(employee5);
-//        andySubordinates.add(employee6);
         andySubordinates.add(employee7);
-//        andySubordinates.add(employee8);
-//        andySubordinates.add(employee10);
         employee9.setSubordinates(andySubordinates);
 
         garrySubordinates.add(employee);
@@ -87,9 +73,6 @@ public class Main {
         employee8.setSubordinates(marthaSubordinates);
 
 
-//        System.out.println(getHightOfSubordinatesTree(employee9));
-//        System.out.println(getHightOfSubordinatesTree(employee));
-//        System.out.println(getHightOfSubordinatesTree(employee8));
         employee9.print();
 
 //        System.out.println(employee9.getNumberOfSubordinates());
