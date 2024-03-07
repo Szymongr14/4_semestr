@@ -1,4 +1,5 @@
 function plot_counts_mean(counts_mean)
+    figure;
     plot(1:size(counts_mean,2), counts_mean, 'b-');
     xlabel('i');
     ylabel('mean');
