@@ -3,6 +3,7 @@ from itertools import compress
 import random
 import time
 import matplotlib.pyplot as plt
+from individual_class import Individual
 
 from data import *
 
@@ -29,13 +30,33 @@ def population_best(items, knapsack_max_capacity, population):
     return best_individual, best_individual_fitness
 
 
+def draw_parent(individuals, sum_of_fitnesses) -> Individual:
+    pick = random.randint(0, sum_of_fitnesses)
+    current = 0
+    for individual_i in individuals:
+        current += individual_i.fitness
+        if current >= pick:
+            return individual_i
+
+
+def crossover_parents(genome1, genome2):
+    middle = random.randint(0, len(genome1)-1)
+    return genome1[:middle] + genome2[middle:], genome2[:middle] + genome1[middle:]
+
+
+def mutate(genome):
+    random_item = random.randint(0, len(genome)-1)
+    genome[random_item] = not genome[random_item]
+    return genome
+
+
 items, knapsack_max_capacity = get_big()
 print(items)
 
 population_size = 100
 generations = 200
 n_selection = 20
-n_elite = 1
+n_elite = 2
 
 start_time = time.time()
 best_solution = None
@@ -44,23 +65,43 @@ population_history = []
 best_history = []
 population = initial_population(len(items), population_size)
 
-population_fitnesses = []
+individuals = []
+children = []
 
 for _ in range(generations):
     population_history.append(deepcopy(population))
+    sum_of_fitnesses = 0
+
     # counting fitness for each individual
     for individual in population:
-        population_fitnesses.append(fitness(items, knapsack_max_capacity, individual))
+        individuals.append(Individual(fitness(items, knapsack_max_capacity, individual), 0, individual))
+        sum_of_fitnesses += individuals[-1].fitness
 
+    # counting chance to be picked based on fitness for each individual
+    for individual in individuals:
+        individual.chance_to_be_picked = individual.fitness / sum_of_fitnesses
 
-
-    # TODO: implement genetic algorithm
+    # drawing parents with roulette wheel selection
+    for _ in range(n_selection):
+        parent1 = draw_parent(individuals, sum_of_fitnesses)
+        parent2 = draw_parent(individuals, sum_of_fitnesses)
+        child1, child2 = crossover_parents(parent1.genome, parent2.genome)
+        children.append(mutate(child1))
+        children.append(mutate(child2))
 
     best_individual, best_individual_fitness = population_best(items, knapsack_max_capacity, population)
+    # adding the best individual from previous generation
+    for _ in range(n_elite):
+        children.append(best_individual)
+
     if best_individual_fitness > best_fitness:
         best_solution = best_individual
         best_fitness = best_individual_fitness
     best_history.append(best_fitness)
+    population = deepcopy(children)
+    children.clear()
+    individuals.clear()
+
 
 end_time = time.time()
 total_time = end_time - start_time
