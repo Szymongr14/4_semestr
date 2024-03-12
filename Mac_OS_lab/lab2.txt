@@ -1,0 +1,183 @@
+import Foundation
+
+//excercise #1
+
+func minValue(_ a: Int, _ b: Int) -> Int{
+    if a<b { return a} 
+    return b
+}
+
+print(minValue(6,-1))
+
+//excercise #2
+
+func getLastDigit(_ number: Int) -> Int{
+    return number%10
+}
+
+print(getLastDigit(8473))
+
+//excercise #3
+
+func divides(_ number: Int, _ divider: Int) -> Bool{
+    if number % divider == 0 {
+        return true
+    }
+    return false
+}
+
+print(divides(10,2))
+
+func countDivisors(_ number: Int) -> Int {
+    var counter: Int = 0
+    let double_number: Double = Double(number)
+    let squareRoot = Int(double_number.squareRoot())
+    
+    for i in 1...squareRoot {
+        if divides(number, i) {
+            if i == number / i {
+                counter += 1
+            } else {
+                counter += 2
+            }
+        }
+    }
+    return counter
+}
+
+print(countDivisors(9))
+
+func isPrime(_ number: Int) -> Bool{
+    if countDivisors(number) > 2 {
+        return false
+    }
+    return true
+}
+
+print(isPrime(13))
+
+
+//excercise #4
+
+func smartBart(_ n: Int,_ closure: () -> Void) -> Void{
+    for _ in 1...n{
+        f()
+    }
+}
+
+var f: () -> Void =  {
+    print("I will pass this course with best mark, because Swift is great!")
+}
+
+smartBart(10,f)
+
+// excercise #5
+
+let numbers = [10, 16, 18, 30, 38, 40, 44, 50]
+
+let filtered_numbers = numbers.filter {$0 % 4 == 0}
+
+print(filtered_numbers)
+
+//excercise #6
+
+let numbers_max = numbers.reduce(Int.min, { currentMax, value in currentMax > value ? currentMax : value})
+print(numbers_max)
+
+//excercise #7
+
+var strings = ["Gdansk", "University", "of", "Technology"]
+
+let output = strings.reduce("") { (result, element) -> String in
+    if result.isEmpty {
+        return element
+    } else {
+        return result + " " + element
+    }
+}
+
+print(output)
+
+//excercise #8
+
+let numbers1 = [1, 2 ,3 ,4, 5, 6]
+
+let sum = numbers1.filter{$0 % 2 == 1}.map{$0 * $0}.reduce(0,+)
+print(sum)
+
+//excercise #9
+
+func minmax(_ a: Int,_ b: Int) -> (min: Int, max: Int){
+    if a < b{
+        return (min: a, max: b)
+    }
+    return (min: b, max: a)
+}
+
+let minmax_tuple = minmax(90,2)
+print("min:", minmax_tuple.min)
+print("max:", minmax_tuple.max)
+
+//excercise #10
+
+var stringsArray = ["gdansk", "university", "gdansk", "university", "university", "of”,  "technology", "technology", "gdansk", "gdansk"]
+
+func countOccurences(_ stringsArray: [String]) -> [(word: String, counter: Int)]{
+    var word_counter = 0
+    var list_of_tuples : [(word: String, counter: Int)] = []
+    
+    for word in stringsArray{
+        var flag = 0
+        for tuple in list_of_tuples{
+            flag = word == tuple.word ? 1 : 0
+            if flag == 1 {break}
+        }
+        if flag == 1 {continue}
+        for element in stringsArray{
+            if element == word{word_counter += 1}  
+        }
+        list_of_tuples.append((word, word_counter))
+        word_counter = 0
+    }
+    return list_of_tuples
+}
+
+let countedStrings = countOccurences(stringsArray)
+print(countedStrings)
+
+//excercise #11
+
+enum Weekday: String{
+    case monday
+    case tuesday
+    case wednesday
+    case thursday
+    case friday
+    case saturday
+    case sunday
+    
+    func emoji() -> String{
+        switch self{
+            case .monday:
+                return "🤣"
+            case .tuesday:
+                return "😊"
+            case .wednesday:
+                return "❤"
+            case .thursday:
+                return "🤷"
+            case .friday:
+                return "💋"
+            case .saturday:
+                return "✔"
+            case .sunday:
+                return "🎶"
+        }
+    }
+}
+
+let weekday = Weekday.monday
+print(weekday.emoji())
+
+let weekday1 = Weekday.friday
+print(weekday1.emoji())
