@@ -6,12 +6,16 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 
 public class Server {
     static final Integer PORT = 7770;
     private ServerSocket server = null;
     private boolean serverIsRunning = true;
+    private List<ConnectionHandler> clients = new ArrayList<>();
 
     public Server() {
         System.out.println("Server started...");
@@ -27,6 +31,7 @@ public class Server {
                 Socket client = server.accept();
                 System.out.println("New client connected");
                 ConnectionHandler handler = new ConnectionHandler(client);
+                clients.add(handler);
                 Thread thread = new Thread(handler);
                 thread.start();
             }catch (IOException e){
@@ -43,12 +48,18 @@ public class Server {
             e.printStackTrace();
         }
     }
-}
+
+    public void SendToAllClients(String message) {
+        for (ConnectionHandler client : clients) {
+            client.out.println(message);
+        }
+    }
+
 
  class ConnectionHandler implements Runnable{
     private Socket client;
     private BufferedReader in;
-    private PrintWriter out;
+    public PrintWriter out;
     private String username;
 
      public ConnectionHandler(Socket client) {
@@ -60,30 +71,58 @@ public class Server {
          try {
              out = new PrintWriter(client.getOutputStream(), true);
              in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-             out.print("Enter username: ");
+             Random rand = new Random();
+             out.println("Enter username: ");
              username = in.readLine();
              System.out.println(username + " connected!");
+             SendToAllClients(username + " connected!");
              String message;
+             out.println("Type number of messages:");
              while((message = in.readLine()) != null){
                  if (message.equalsIgnoreCase("quit")){
                         break;
                  }
-                 System.out.println(username + " says: " + message);
-                 out.println("You said: " + message);
+                 try{
+                     Integer numberOfMessages = Integer.parseInt(message);
+                     List<Message> messages = new ArrayList<>();
+
+                    for (int i = 0; i < numberOfMessages; i++) {
+                        out.println("Enter message: ");
+                        String content = in.readLine();
+                        Message newMessage = new Message();
+                        newMessage.setContent(content);
+                        newMessage.setId(rand.nextInt(999));
+                        messages.add(newMessage);
+                    }
+                    for (Message m : messages) {
+                        System.out.println("#" + m.getId()+ " " + username + " says: " + m.getContent());
+                        SendToAllClients("#" + m.getId()+ " " + username + " says: " + m.getContent());
+                    }
+                    messages.clear();
+                    out.println("Type number of messages:");
+                 }
+                 catch (NumberFormatException e){
+                     out.println("Invalid input, try again!");
+                 }
              }
-             out.println(username + "disconnected");
+             System.out.println(username + " disconnected");
+             out.close();
+             in.close();
+             client.close();
+             SendToAllClients(username + " disconnected");
+             clients.remove(this);
+
          } catch (IOException e) {
-             throw new RuntimeException(e);
+             System.out.println(username + " disconnected");
+             SendToAllClients(username + " disconnected");
+             clients.remove(this);
          }
 
     }
+}
 
-
-
-
-    static class Main {
-        public static void main(String[] args) {
-            new Server();
-        }
+    public static void main(String[] args) {
+        new Server();
     }
+
 }
