@@ -25,5 +25,6 @@ while true
     i = i + 1;
 end
 toc;
+iterations = i;
 time = toc;
 end

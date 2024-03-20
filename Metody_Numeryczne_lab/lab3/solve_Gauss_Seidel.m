@@ -22,9 +22,10 @@ while true
     if i > iterations || err<err_norm
         break;
     end
-    disp(err);
+    %disp(err);
     i = i + 1;
 end
 toc;
+iterations = i;
 time = toc;
 end
