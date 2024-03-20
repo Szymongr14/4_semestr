@@ -2,6 +2,8 @@ package org.example;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.Random;
+import java.util.Scanner;
 
 public class Client {
 
@@ -16,7 +18,7 @@ public class Client {
             out = new PrintWriter(client.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(client.getInputStream()));
             System.out.println("Connected to server");
-            new Thread(new InputHandler()).start();
+            new Thread(new InputHandler(client)).start();
             String message;
             while(connectedToServer){
                 if((message = in.readLine()) != null){
@@ -41,16 +43,32 @@ public class Client {
 
 
     class InputHandler implements Runnable{
+        Socket socket;
+        Scanner console;
+
+        public InputHandler(Socket socket) {
+            this.socket = socket;
+            this.console = new Scanner(System.in);
+        }
 
         @Override
         public void run() {
-            BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
+            Random rand = new Random();
+            ObjectOutputStream out = null;
+            try {
+                out = new ObjectOutputStream(socket.getOutputStream());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             String message;
             try {
-                while(!(message = console.readLine()).equalsIgnoreCase("quit")){
-                    out.println(message);
+                while(!(message = console.nextLine()).equalsIgnoreCase("quit")){
+                    Message message_protocol = new Message();
+                    message_protocol.setContent(message);
+                    message_protocol.setId(rand.nextInt(999));
+                    out.writeObject(message_protocol);
                 }
-                console.close();
+                out.close();
                 disconnect();
             } catch (IOException e) {
                 System.out.println("erorr");

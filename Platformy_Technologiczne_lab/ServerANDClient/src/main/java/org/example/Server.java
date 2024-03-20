@@ -1,9 +1,6 @@
 package org.example;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -70,28 +67,35 @@ public class Server {
     public void run() {
          try {
              out = new PrintWriter(client.getOutputStream(), true);
-             in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+//             in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+             ObjectInputStream in = null;
+             try {
+                 in = new ObjectInputStream(client.getInputStream());
+             } catch (IOException e) {
+                 throw new RuntimeException(e);
+             }
+
+
              Random rand = new Random();
              out.println("Enter username: ");
-             username = in.readLine();
+             Message client_message = (Message) in.readObject();
+             username = client_message.getContent();
              System.out.println(username + " connected!");
              SendToAllClients(username + " connected!");
              String message;
              out.println("Type number of messages:");
-             while((message = in.readLine()) != null){
-                 if (message.equalsIgnoreCase("quit")){
+             while((client_message = (Message) in.readObject()) != null){
+                 if (client_message.getContent().equalsIgnoreCase("quit")){
                         break;
                  }
                  try{
-                     Integer numberOfMessages = Integer.parseInt(message);
+                     Integer numberOfMessages = Integer.parseInt(client_message.getContent());
                      List<Message> messages = new ArrayList<>();
 
                     for (int i = 0; i < numberOfMessages; i++) {
                         out.println("Enter message: ");
-                        String content = in.readLine();
-                        Message newMessage = new Message();
-                        newMessage.setContent(content);
-                        newMessage.setId(rand.nextInt(999));
+                        client_message = (Message) in.readObject();
+                        Message newMessage = client_message;
                         messages.add(newMessage);
                     }
                     for (Message m : messages) {
@@ -116,9 +120,11 @@ public class Server {
              System.out.println(username + " disconnected");
              SendToAllClients(username + " disconnected");
              clients.remove(this);
+         } catch (ClassNotFoundException e) {
+             throw new RuntimeException(e);
          }
 
-    }
+     }
 }
 
     public static void main(String[] args) {
