@@ -23,5 +23,6 @@ title("Comparison number of iterations to get result of Jacobi and GaussSeidel m
 legend('Jacobi','GaussSeidel','Location','eastoutside');
 xlabel('Matrix Size');
 ylabel('Number of iterations to get result');
+set(gcf, 'position', [292.5000  150.0000  958.0000  612.0000]);
 print('zadanie5.png','-dpng')
 end

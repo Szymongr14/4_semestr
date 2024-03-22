@@ -13,6 +13,3 @@ for i = 1:n
     vtime_direct(i) = time_direct;
 end
 plot_direct(N,vtime_direct);
-
-
-

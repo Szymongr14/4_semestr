@@ -1,7 +1,7 @@
 function [A,b,M,bm,x,err_norm,time,iterations,index_number] = solve_Jacobi(N)
 
 index_number = 193141;
-err_norm = 0.00000000001;
+err_norm = 1E-11;
 iterations = 1000;
 L1 = 1;
 

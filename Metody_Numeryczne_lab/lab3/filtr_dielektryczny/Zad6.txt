@@ -1,0 +1,12 @@
+Metoda bezpośrednia: 
+błąd rezydualny = 7.226938130884764e-13
+
+Jacobi:
+błąd rezydualny = NaN (poza zakresem)
+
+Gauss_Seidel:
+błąd rezydualny = 6.786450457692089e+10
+
+Wnioski:
+Metody iteracyjne nie sprawdziły się do oblicznenia tego układu równań, ich błędy rosną
+po każdej iteracji, a wyniki są niepoprawne.
