@@ -1,33 +1,42 @@
 package org.example;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
 
 @Entity
 @Table(name="student")
 public class Student {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int studentId;
 
-    private String name;
+    private String firstName;
 
-    private String surname;
+    private String lastName;
 
     @ManyToOne
     private Department department;
 
-
-    public Student(String name, String surname, Department department) {
-        this.name = name;
-        this.surname = surname;
+    public Student(String firstName, String lastName, Department department) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.department = department;
+        department.AddStudent(this);
     }
 
-    public Student() {
-
-    }
-
-    public String getName() {
-        return name;
+    @Override
+    public String toString() {
+        return "Student{" +
+                "studentId=" + studentId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", department=" + department.getName() +
+                '}';
     }
 }

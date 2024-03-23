@@ -19,7 +19,6 @@
             <property name="hibernate.h2.console.url" value="/h2-console"/>
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
             <!-- czy kod SQL zapytań robionych przez Hibernate ma się wyświetlać w konsoli -->
-            <property name="hibernate.show_sql" value="false" />
-        </properties>
+            <property name="hibernate.show_sql" value="false" /> </properties>
     </persistence-unit>
 </persistence>

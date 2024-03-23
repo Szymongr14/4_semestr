@@ -4,6 +4,15 @@ import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString
 
 @Entity
 @Table(name="department")
@@ -22,31 +31,12 @@ public class Department {
         this.students = new ArrayList<>();
     }
 
-    public Department() {
-
+    public void AddStudent(Student s){
+        students.add(s);
     }
 
-    public String getName() {
-        return name;
+    public void RemoveStudent(Student s){
+        students.remove(s);
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getBuildingId() {
-        return buildingId;
-    }
-
-    public void setBuildingId(Integer buildingId) {
-        this.buildingId = buildingId;
-    }
-
-    public List<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(List<Student> students) {
-        this.students = students;
-    }
 }
