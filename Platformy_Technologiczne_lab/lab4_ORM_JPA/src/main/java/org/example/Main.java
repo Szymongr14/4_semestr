@@ -3,6 +3,7 @@ package org.example;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.Query;
 
 public class Main {
 
@@ -20,6 +21,14 @@ public class Main {
 
         // Step 6: Commit the transaction
         em.getTransaction().commit();
+
+        Query query = em.createQuery("SELECT s FROM Student s");
+        System.out.println("test");
+//        System.out.println(query.getResultList());
+        for (Object o : query.getResultList()) {
+            Student s = (Student) o;
+            System.out.println(s.getName());
+        }
 
         em.close();
         emf.close();

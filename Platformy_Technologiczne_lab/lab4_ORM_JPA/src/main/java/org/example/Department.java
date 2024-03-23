@@ -13,7 +13,7 @@ public class Department {
 
     private Integer buildingId;
 
-    @OneToMany
+    @OneToMany(mappedBy = "department")
     private List<Student> students;
 
     public Department(String name, Integer buildingId) {
@@ -24,5 +24,29 @@ public class Department {
 
     public Department() {
 
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getBuildingId() {
+        return buildingId;
+    }
+
+    public void setBuildingId(Integer buildingId) {
+        this.buildingId = buildingId;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 }
