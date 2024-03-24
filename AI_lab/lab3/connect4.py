@@ -1,3 +1,5 @@
+import copy
+
 from exceptions import GameplayException
 
 
@@ -9,25 +11,27 @@ class Connect4:
         self.game_over = False
         self.wins = None
         self.board = []
-        self.previous_state = []
+        self.previous_states = []
         for n_row in range(self.height):
             self.board.append(['_' for _ in range(self.width)])
 
     def possible_drops(self):
         return [n_column for n_column in range(self.width) if self.board[0][n_column] == '_']
 
-    def drop_token(self, n_column):
+    def drop_token(self, n_column, from_agent=False):
         if self.game_over:
             raise GameplayException('game over')
         if n_column not in self.possible_drops():
             raise GameplayException('invalid move')
 
+        self.previous_states.append(copy.deepcopy(self.board))
+
         n_row = 0
         while n_row + 1 < self.height and self.board[n_row + 1][n_column] == '_':
             n_row += 1
-        self.previous_state = self.board
         self.board[n_row][n_column] = self.who_moves
-        self.game_over = self._check_game_over()
+        if not from_agent:
+            self.game_over = self._check_game_over()
         self.who_moves = 'o' if self.who_moves == 'x' else 'x'
 
     def center_column(self):
@@ -75,7 +79,7 @@ class Connect4:
             print('possible drops:', self.possible_drops())
 
     def undo_last_move(self):
-        self.board = self.previous_state
+        self.board = self.previous_states.pop()
         self.who_moves = 'o' if self.who_moves == 'x' else 'x'
         self.game_over = False
         self.wins = None

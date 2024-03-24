@@ -2,13 +2,14 @@ class MinMaxAgent:
     def __init__(self, my_token, max_tree_depth):
         self.my_token = my_token
         self.max_tree_depth = max_tree_depth
+        self.best_move = None
 
     def decide(self, connect4) -> int:
-        decision = self.minmax(connect4, self.max_tree_depth, True)
-        return decision
+        self.minmax(connect4, self.max_tree_depth, True)
+        return self.best_move
 
     def minmax(self, connect4, depth, maximizing_player):
-        if depth == 0 or connect4.game_over():
+        if depth == 0 or connect4._check_game_over():
             match connect4.wins:
                 case self.my_token:
                     return 1
@@ -19,20 +20,27 @@ class MinMaxAgent:
         if maximizing_player:
             max_value = float("-inf")
             for possible_move in connect4.possible_drops():
-                connect4.drop_token(possible_move)
+                connect4.drop_token(possible_move, True)
                 value = self.minmax(connect4, depth - 1, False)
-                connect4.undo_move()
-                max_value = max(value, max_value)
+                connect4.undo_last_move()
+                if value > max_value:
+                    max_value = value
+                    self.best_move = possible_move
             return max_value
         else:
             min_value = float("+inf")
             for possible_move in connect4.possible_drops():
-                connect4.drop_token(possible_move)
+                connect4.drop_token(possible_move, True)
                 value = self.minmax(connect4, depth - 1, True)
-                connect4.undo_move()
+                connect4.undo_last_move()
                 min_value = min(value, min_value)
             return min_value
 
     def rate_state(self, connect4):
-        middle = connect4.center_column()
-        return self.my_token
+        middle_column = connect4.center_column()
+        tokens = 0
+        for element in middle_column:
+            if element == self.my_token:
+                tokens += 1
+
+        return tokens * 0.001
