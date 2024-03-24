@@ -1,2 +1,3 @@
 class AlphaBetaAgent:
-    pass
+    def decide(self, connect4):
+        pass
