@@ -1,5 +1,3 @@
-import time
-
 from City import City
 
 
@@ -12,33 +10,42 @@ def count_distance(list1) -> int:
     return distance
 
 
-def permutation(lst):
-    if len(lst) == 0:
+def permutation(elements_set, k):
+    if k == 0:
+        return [[]]
+    if len(elements_set) == 0:
         return []
-    if len(lst) == 1:
-        return [lst]
+    if len(elements_set) == 1:
+        return [elements_set]
     l = []
-    for i in range(len(lst)):
-        m = lst[i]
-        remLst = lst[:i] + lst[i + 1:]
-        for p in permutation(remLst):
+    for i in range(len(elements_set)):
+        m = elements_set[i]
+        remaining_set = elements_set[:i] + elements_set[i + 1:]
+        for p in permutation(remaining_set, k - 1):
             l.append([m] + p)
     return l
 
 
-N = 10
+N = 4
 cities = []
-with open('miasta.in', 'r') as file:
-    lines = file.readlines()[1:]  # Skip the header line
+with open('italy_cities.txt', 'r') as file:
+    lines = file.readlines()[1:]
     for i in range(0, N):
         data = lines[i].split()
         city = City(data[1], int(data[2]), float(data[3]), float(data[4]))
         cities.append(city)
 
-start_time = time.time()
-permutations = permutation(cities)
-end_time = time.time()
 
+variations = permutation(cities, 3)
+i = 1
+for element in variations:
+    print(f"{i}. ", end="")
+    for city in element:
+        print(f"{city}, ", end="")
+    print("\n")
+    i += 1
+
+permutations = variations
 min_distance = float('+inf')
 best_solution = 0
 current_distance = 0
@@ -48,7 +55,7 @@ for permutation in permutations:
         min_distance = current_distance
         best_solution = permutation
 
-print("Best solution:")
+print("Shortest path:")
 for city in best_solution:
-    print(city)
-print(f"Time: {end_time - start_time}s")
+    print(city, end=", ")
+print(f"\nWith distance of: {min_distance}")
