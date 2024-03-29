@@ -2,7 +2,8 @@ from math import sqrt
 
 
 class City:
-    def __init__(self, name, population, latitude, longitude):
+    def __init__(self, id_, name, population, latitude, longitude):
+        self.id = id_
         self.name = name
         self.population = population
         self.latitude = latitude
