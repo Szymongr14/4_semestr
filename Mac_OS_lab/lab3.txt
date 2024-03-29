@@ -1,0 +1,107 @@
+//I've chosen fitness tracker app like garmin connect or strava
+
+class Activity: CustomStringConvertible {
+    var date: String
+    var duration: Double
+    var calories: Int
+    var maxHR: Int
+    var avgHR: Int
+    
+    init(date: String, duration: Double, calories: Int, maxHR: Int, avgHR: Int) {
+        self.date = date
+        self.duration = duration
+        self.calories = calories
+        self.maxHR = maxHR
+        self.avgHR = avgHR
+    }
+    
+    var description: String {
+        return "Date: \(date), Duration: \(duration) minutes, Calories: \(calories), Max HR: \(maxHR), Avg HR: \(avgHR)"
+    }
+}
+
+enum EquipmentType {
+    case shoes
+    case bike
+    case swimsuit
+    case weights
+}
+
+class Running: Activity {
+    var distance: Double
+    var pace: Double
+    
+    init(date: String, duration: Double, calories: Int, maxHR: Int, avgHR: Int, distance: Double, pace: Double) {
+        self.distance = distance
+        self.pace = pace
+        super.init(date: date, duration: duration, calories: calories, maxHR: maxHR, avgHR: avgHR)
+    }
+    
+    override var description: String {
+        return "Running Activity: Date: \(date), Duration: \(duration) minutes, Calories: \(calories), Max HR: \(maxHR), Avg HR: \(avgHR), Distance: \(distance) km, Pace: \(pace) min/km"
+    }
+}
+
+
+class Cycling: Activity {
+    var distance: Double
+    var power: Double
+    
+    init(date: String, duration: Double, calories: Int, maxHR: Int, avgHR: Int, distance: Double, power: Double) {
+        self.distance = distance
+        self.power = power
+        super.init(date: date, duration: duration, calories: calories, maxHR: maxHR, avgHR: avgHR)
+    }
+    
+    override var description: String {
+        return "Cycling Activity: Date: \(date), Duration: \(duration) minutes, Calories: \(calories), Max HR: \(maxHR), Avg HR: \(avgHR), Distance: \(distance) km, Power: \(power) W"
+    }
+}
+
+
+struct User: CustomStringConvertible{
+    var username:String
+    var age: Int
+    var favouriteSport: String
+    var goals: [String]
+    var equipment: [Equipment]
+    var activityHistory: [Activity]
+    init(username: String, age: Int, favouriteSport: String, goals: [String], equipment: [Equipment], activityHistory: [Activity]){
+        self.username = username
+        self.age = age
+        self.favouriteSport = favouriteSport
+        self.goals = goals
+        self.equipment = equipment
+        self.activityHistory = activityHistory
+    }
+    
+        var description: String {
+    return "Username: \(username), Age: \(age), Favourite Sport: \(favouriteSport), Goals: \(goals), Equipment: \(equipment), Activity History: \(activityHistory)"
+    }
+}
+
+class Equipment: CustomStringConvertible {
+    var name: String
+    var type: EquipmentType
+    var brand: String
+    
+    init(name: String, type: EquipmentType, brand: String) {
+        self.name = name
+        self.type = type
+        self.brand = brand
+    }
+    
+    var description: String {
+        return "Name: \(name), Type: \(type), Brand: \(brand)"
+    }
+}
+
+let runningShoes = Equipment(name: "Nike Air Zoom", type: .shoes, brand: "Nike")
+let cyclingHelmet = Equipment(name: "Giro Helmet", type: .bike, brand: "Giro")
+
+let runningActivity = Running(date: "2024-03-29", duration: 30.0, calories: 350, maxHR: 180, avgHR: 160, distance: 5.0, pace: 6.0)
+let cyclingActivity = Cycling(date: "2024-03-28", duration: 45.0, calories: 400, maxHR: 170, avgHR: 150, distance: 20.0, power: 150.0)
+
+let user = User(username: "JohnDoe", age: 30, favouriteSport: "Running", goals: ["Run 5K", "Complete a marathon"], equipment: [runningShoes, cyclingHelmet], activityHistory: [runningActivity, cyclingActivity])
+
+print(user)
