@@ -27,7 +27,7 @@ public class Main {
             //create list of paths to images from source dir
             files = stream.toList();
             //creating stream of Pairs (fileName, image)
-            for (int i=17;i<=19;i++) {
+            for (int i=1;i<=30;i++) {
                 long start = System.currentTimeMillis();
                 ForkJoinPool customThreadPool = new ForkJoinPool(i);
                 customThreadPool.submit(() -> files.parallelStream()

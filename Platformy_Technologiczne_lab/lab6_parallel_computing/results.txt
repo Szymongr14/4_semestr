@@ -1,19 +1,30 @@
-Execution time: 115 s for 1 threads
-Execution time: 63 s for 2 threads
-Execution time: 44 s for 3 threads
-Execution time: 38 s for 4 threads
-Execution time: 32 s for 5 threads
-Execution time: 43 s for 6 threads
-Execution time: 43 s for 7 threads
-Execution time: 38 s for 8 threads
-Execution time: 35 s for 9 threads
-Execution time: 34 s for 10 threads
-Execution time: 33 s for 11 threads
-Execution time: 32 s for 12 threads
-Execution time: 35 s for 13 threads
-Execution time: 31 s for 14 threads
-Execution time: 30 s for 15 threads
-Execution time: 30 s for 16 threads
-Execution time: 29 s for 17 threads
-Execution time: 28 s for 18 threads
-Execution time: 28 s for 19 threads
+Execution time: 116s for1 threads
+Execution time: 65s for2 threads
+Execution time: 46s for3 threads
+Execution time: 36s for4 threads
+Execution time: 31s for5 threads
+Execution time: 28s for6 threads
+Execution time: 23s for7 threads
+Execution time: 23s for8 threads
+Execution time: 23s for9 threads
+Execution time: 23s for10 threads
+Execution time: 22s for11 threads
+Execution time: 20s for12 threads
+Execution time: 21s for13 threads
+Execution time: 20s for14 threads
+Execution time: 21s for15 threads
+Execution time: 20s for16 threads
+Execution time: 20s for17 threads
+Execution time: 22s for18 threads
+Execution time: 20s for19 threads
+Execution time: 20s for20 threads
+Execution time: 20s for21 threads
+Execution time: 20s for22 threads
+Execution time: 20s for23 threads
+Execution time: 20s for24 threads
+Execution time: 20s for25 threads
+Execution time: 21s for26 threads
+Execution time: 20s for27 threads
+Execution time: 20s for28 threads
+Execution time: 20s for29 threads
+Execution time: 20s for30 threads
