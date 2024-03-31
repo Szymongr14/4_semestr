@@ -1,0 +1,14 @@
+C:\Users\szymo\Documents\GitHub\4_semestr\Platformy_Technologiczne_lab\Lab7\Lab7\bin\Debug\net7.0\Lab7.exe
+C:\Users\szymo\Documents\GitHub\4_semestr\Platformy_Technologiczne_lab\Lab7\Lab7\bin\Debug\net7.0\Lab7.deps.json
+C:\Users\szymo\Documents\GitHub\4_semestr\Platformy_Technologiczne_lab\Lab7\Lab7\bin\Debug\net7.0\Lab7.runtimeconfig.json
+C:\Users\szymo\Documents\GitHub\4_semestr\Platformy_Technologiczne_lab\Lab7\Lab7\bin\Debug\net7.0\Lab7.dll
+C:\Users\szymo\Documents\GitHub\4_semestr\Platformy_Technologiczne_lab\Lab7\Lab7\bin\Debug\net7.0\Lab7.pdb
+C:\Users\szymo\Documents\GitHub\4_semestr\Platformy_Technologiczne_lab\Lab7\Lab7\obj\Debug\net7.0\Lab7.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\szymo\Documents\GitHub\4_semestr\Platformy_Technologiczne_lab\Lab7\Lab7\obj\Debug\net7.0\Lab7.AssemblyInfoInputs.cache
+C:\Users\szymo\Documents\GitHub\4_semestr\Platformy_Technologiczne_lab\Lab7\Lab7\obj\Debug\net7.0\Lab7.AssemblyInfo.cs
+C:\Users\szymo\Documents\GitHub\4_semestr\Platformy_Technologiczne_lab\Lab7\Lab7\obj\Debug\net7.0\Lab7.csproj.CoreCompileInputs.cache
+C:\Users\szymo\Documents\GitHub\4_semestr\Platformy_Technologiczne_lab\Lab7\Lab7\obj\Debug\net7.0\Lab7.dll
+C:\Users\szymo\Documents\GitHub\4_semestr\Platformy_Technologiczne_lab\Lab7\Lab7\obj\Debug\net7.0\refint\Lab7.dll
+C:\Users\szymo\Documents\GitHub\4_semestr\Platformy_Technologiczne_lab\Lab7\Lab7\obj\Debug\net7.0\Lab7.pdb
+C:\Users\szymo\Documents\GitHub\4_semestr\Platformy_Technologiczne_lab\Lab7\Lab7\obj\Debug\net7.0\Lab7.genruntimeconfig.cache
+C:\Users\szymo\Documents\GitHub\4_semestr\Platformy_Technologiczne_lab\Lab7\Lab7\obj\Debug\net7.0\ref\Lab7.dll
