@@ -25,7 +25,7 @@ namespace Lab7
             return oldestDate;
         }
 
-        public static string GetRAHS(this FileInfo fileInfo)
+        public static string GetRahs(this FileInfo fileInfo)
         {
             var rahsString = "";
             if (fileInfo.IsReadOnly)
