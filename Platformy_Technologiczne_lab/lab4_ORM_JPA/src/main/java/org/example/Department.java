@@ -22,7 +22,7 @@ public class Department {
 
     private Integer buildingId;
 
-    @OneToMany(mappedBy = "department")
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
     private List<Student> students;
 
     public Department(String name, Integer buildingId) {

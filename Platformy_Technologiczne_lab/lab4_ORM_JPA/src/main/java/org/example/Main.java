@@ -25,7 +25,7 @@ public class Main {
                 case "3" -> AddNewDepartment(em);
                 case "4" -> RemoveStudent(em);
                 case "5" -> RemoveDepartment(em);
-//                case "6" -> //TODO: handle ;
+                case "6" -> CustomQuery1(em);
                 case "7" -> running = false;
                 default -> System.out.println("Incorrect input!");
             }
@@ -41,9 +41,33 @@ public class Main {
         System.out.println("3. Add new department");
         System.out.println("4. Remove student" );
         System.out.println("5. Remove department");
-        System.out.println("6. Display query");
+        System.out.println("6. Display buildings with greater id");
         System.out.println("7. Exit");
         System.out.print("Choose an option: ");
+    }
+
+    public static void CustomQuery(EntityManager em){
+        System.out.println("Write name of student: ");
+        Scanner scan = new Scanner(System.in);
+        String name = scan.nextLine();
+        Query query = em.createQuery("SELECT s FROM Student s WHERE s.firstName = :name");
+        query.setParameter("name", name);
+        System.out.println("Students with name " + name + ":");
+        for (Object o : query.getResultList()) {
+            System.out.println(o);
+        }
+    }
+
+    public static void CustomQuery1(EntityManager em){
+        System.out.println("Write building id: ");
+        Scanner scan = new Scanner(System.in);
+        int buildingId = scan.nextInt();
+        Query query = em.createQuery("SELECT d FROM Department d WHERE d.buildingId >= :buildingId");
+        query.setParameter("buildingId", buildingId);
+        System.out.println("Departments with building id " + buildingId + ":");
+        for (Object o : query.getResultList()) {
+            System.out.println(o);
+        }
     }
 
     public static void FillWithTestData(EntityManager em) {

@@ -16,9 +16,8 @@ namespace Lab7
             
             RecursiveSearch(path);
             depth = 0;
-            var dirInfo = new DirectoryInfo(path);
             
-            Console.WriteLine(dirInfo.GetOldestElementDate());
+            Console.WriteLine(new DirectoryInfo(path).GetOldestElementDate());
 
             var mappedFiles = CreateCollection(path);
             SerializeCollection(mappedFiles, "mappedFiles.bin");
