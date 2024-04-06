@@ -13,10 +13,31 @@ function [xsolution,ysolution,iterations,xtab,xdif] = bisection_method(a,b,max_i
 
 xsolution = [];
 ysolution = [];
-iterations = [];
 xtab = [];
 xdif = [];
 
 
+i = 1;
+while true
+    c = (a+b)/2;
+    xtab = [xtab;c];
+    if i > 1
+        xdif = [xdif; abs(xtab(i) - xtab(i-1))];
+    end
+
+    if abs(fun(c)) < ytolerance || i > max_iterations
+        xsolution = c;
+        ysolution = fun(xsolution);
+        break;
+    elseif fun(c) * fun(a) < 0
+        b = c;
+    else 
+        a = c;
+    end
+    i = i+1;
+end
+
+
+iterations = i;
 
 end
