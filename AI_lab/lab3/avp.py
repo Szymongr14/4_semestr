@@ -1,9 +1,10 @@
 from exceptions import GameplayException
 from connect4 import Connect4
 from minmaxagent import MinMaxAgent
+from alphabetaagent import AlphaBetaAgent
 
 connect4 = Connect4(width=7, height=6)
-agent = MinMaxAgent('x', 6)
+agent = AlphaBetaAgent('x', 4)
 while not connect4.game_over:
     connect4.draw()
     try:
