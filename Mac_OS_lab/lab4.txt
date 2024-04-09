@@ -1,0 +1,447 @@
+import Foundation
+
+//1 and 4
+struct Location {
+    let id: Int
+    let type: String
+    let name: String
+    let rating: Int
+}
+
+struct City {
+    let id: Int
+    let name: String
+    let description: String
+    let latitude: Double
+    let longitude: Double
+    let keywords: [String]
+    let locations: [Location]
+}
+
+let cities = [
+    City(
+        id: 22,
+        name: "Los Angeles",
+        description: "The City of Angels",
+        latitude: 34.0522,
+        longitude: -118.2437,
+        keywords: ["entertainment", "beaches", "culture", "food"],
+        locations: [
+            Location(id: 4, type: "theaters", name: "Theater X", rating: 4),
+            Location(id: 5, type: "beaches", name: "Beach Y", rating: 5),
+            Location(id: 6, type: "art galleries", name: "Gallery Z", rating: 3)
+        ]
+    ),
+    City(
+        id: 23,
+        name: "Paris",
+        description: "The City of Love",
+        latitude: 48.8566,
+        longitude: 2.3522,
+        keywords: ["romance", "culture", "cuisine", "fashion"],
+        locations: [
+            Location(id: 7, type: "cafes", name: "Cafe P", rating: 5),
+            Location(id: 8, type: "monuments", name: "Monument Q", rating: 4),
+            Location(id: 9, type: "fashion boutiques", name: "Boutique R", rating: 3)
+        ]
+    ),
+    City(
+        id: 24,
+        name: "Tokyo",
+        description: "The Capital of Japan",
+        latitude: 35.6895,
+        longitude: 139.6917,
+        keywords: ["technology", "culture", "cuisine", "shopping"],
+        locations: [
+            Location(id: 10, type: "temples", name: "Temple S", rating: 4),
+            Location(id: 11, type: "technology centers", name: "Tech Center T", rating: 5),
+            Location(id: 12, type: "shopping districts", name: "Shopping District U", rating: 3)
+        ]
+    ),
+    City(
+        id: 25,
+        name: "London",
+        description: "The Capital of the United Kingdom",
+        latitude: 51.5074,
+        longitude: -0.1278,
+        keywords: ["history", "culture", "theater", "royalty"],
+        locations: [
+            Location(id: 13, type: "historical sites", name: "Historical Site V", rating: 4),
+            Location(id: 14, type: "theaters", name: "Theater W", rating: 5),
+            Location(id: 15, type: "palaces", name: "Palace X", rating: 3)
+        ]
+    ),
+    City(
+        id: 26,
+        name: "Rome",
+        description: "The Eternal City",
+        latitude: 41.9028,
+        longitude: 12.4964,
+        keywords: ["history", "art", "cuisine", "architecture"],
+        locations: [
+            Location(id: 16, type: "ancient ruins", name: "Ruins Y", rating: 5),
+            Location(id: 17, type: "art museums", name: "Art Museum Z", rating: 4),
+            Location(id: 18, type: "restaurants", name: "Restaurant AA", rating: 3)
+        ]
+    ),
+    City(
+        id: 27,
+        name: "Sydney",
+        description: "The Harbour City",
+        latitude: -33.8688,
+        longitude: 151.2093,
+        keywords: ["beaches", "sailing", "nature", "culture"],
+        locations: [
+            Location(id: 19, type: "beaches", name: "Beach AB", rating: 4),
+            Location(id: 20, type: "parks", name: "Park AC", rating: 5),
+            Location(id: 21, type: "aquariums", name: "Aquarium AD", rating: 3)
+        ]
+    ),
+    City(
+        id: 28,
+        name: "Dubai",
+        description: "The City of Gold",
+        latitude: 25.276987,
+        longitude: 55.296249,
+        keywords: ["luxury", "skyscrapers", "shopping", "desert"],
+        locations: [
+            Location(id: 22, type: "shopping malls", name: "Mall of Dubai", rating: 5),
+            Location(id: 23, type: "desert safaris", name: "Desert Safari Tours", rating: 4),
+            Location(id: 24, type: "luxury hotels", name: "Luxury Hotel ABC", rating: 5)
+        ]
+    ),
+    City(
+        id: 29,
+        name: "Singapore",
+        description: "The Lion City",
+        latitude: 1.3521,
+        longitude: 103.8198,
+        keywords: ["modern", "gardens", "food", "culture"],
+        locations: [
+            Location(id: 25, type: "botanic gardens", name: "Botanic Garden XYZ", rating: 5),
+            Location(id: 26, type: "hawker centers", name: "Hawker Center DEF", rating: 4),
+            Location(id: 27, type: "modern architecture", name: "Architectural Landmark GHI", rating: 4)
+        ]
+    ),
+    City(
+        id: 30,
+        name: "Hong Kong",
+        description: "The Pearl of the Orient",
+        latitude: 22.3193,
+        longitude: 114.1694,
+        keywords: ["skyline", "culture", "dim sum", "shopping"],
+        locations: [
+            Location(id: 28, type: "skyline views", name: "Skyline View JKL", rating: 5),
+            Location(id: 29, type: "dim sum restaurants", name: "Dim Sum Palace MNO", rating: 4),
+            Location(id: 30, type: "street markets", name: "Street Market PQR", rating: 4)
+        ]
+    ),
+    City(
+        id: 31,
+        name: "Rio de Janeiro",
+        description: "The Marvelous City",
+        latitude: -22.9068,
+        longitude: -43.1729,
+        keywords: ["beaches", "carnival", "samba", "culture"],
+        locations: [
+            Location(id: 31, type: "beaches", name: "Beach STU", rating: 5),
+            Location(id: 32, type: "samba clubs", name: "Samba Club VWX", rating: 4),
+            Location(id: 33, type: "historic landmarks", name: "Landmark YZA", rating: 4)
+        ]
+    ),
+    City(
+        id: 32,
+        name: "Berlin",
+        description: "The Capital of Germany",
+        latitude: 52.5200,
+        longitude: 13.4050,
+        keywords: ["history", "art", "nightlife", "culture"],
+        locations: [
+            Location(id: 34, type: "historical sites", name: "Historical Site BCD", rating: 5),
+            Location(id: 35, type: "art galleries", name: "Art Gallery EFG", rating: 4),
+            Location(id: 36, type: "nightclubs", name: "Nightclub HIJ", rating: 4)
+        ]
+    ),
+    City(
+        id: 33,
+        name: "Mumbai",
+        description: "The City of Dreams",
+        latitude: 19.0760,
+        longitude: 72.8777,
+        keywords: ["film industry", "culture", "street food", "markets"],
+        locations: [
+            Location(id: 37, type: "film studios", name: "Film Studio KLM", rating: 5),
+            Location(id: 38, type: "street food stalls", name: "Street Food Stall NOP", rating: 4),
+            Location(id: 39, type: "markets", name: "Market QRS", rating: 4)
+        ]
+    ),
+    City(
+        id: 34,
+        name: "Barcelona",
+        description: "The City of Counts",
+        latitude: 41.3851,
+        longitude: 2.1734,
+        keywords: ["architecture", "beaches", "gastronomy", "art"],
+        locations: [
+            Location(id: 40, type: "architectural landmarks", name: "Architectural Landmark TUV", rating: 5),
+            Location(id: 41, type: "beaches", name: "Beach WXY", rating: 4),
+            Location(id: 42, type: "gastronomic restaurants", name: "Gastronomic Restaurant YZ", rating: 4)
+        ]
+    ),
+    City(
+        id: 35,
+        name: "Cape Town",
+        description: "The Mother City",
+        latitude: -33.9249,
+        longitude: 18.4241,
+        keywords: ["nature", "history", "adventure", "culture"],
+        locations: [
+            Location(id: 43, type: "natural landmarks", name: "Natural Landmark ZA", rating: 5),
+            Location(id: 44, type: "historical sites", name: "Historical Site AB", rating: 4),
+            Location(id: 45, type: "adventure activities", name: "Adventure Activity BC", rating: 4)
+        ]
+    ),
+    City(
+        id: 36,
+        name: "Bangkok",
+        description: "The City of Angels",
+        latitude: 13.7563,
+        longitude: 100.5018,
+        keywords: ["temples", "street food", "nightlife", "culture"],
+        locations: [
+            Location(id: 46, type: "temples", name: "Temple CD", rating: 5),
+            Location(id: 47, type: "street food markets", name: "Street Food Market DE", rating: 4),
+            Location(id: 48, type: "night markets", name: "Night Market EF", rating: 4)
+        ]
+    ),
+    City(
+        id: 37,
+        name: "Venice",
+        description: "The City of Canals",
+        latitude: 45.4408,
+        longitude: 12.3155,
+        keywords: ["romance", "history", "art", "architecture"],
+        locations: [
+            Location(id: 49, type: "canals", name: "Canal GH", rating: 5),
+            Location(id: 50, type: "art museums", name: "Art Museum HI", rating: 4),
+            Location(id: 51, type: "historic sites", name: "Historic Site IJ", rating: 4)
+        ]
+    ),
+    City(
+        id: 38,
+        name: "Prague",
+        description: "The City of a Hundred Spires",
+        latitude: 50.0755,
+        longitude: 14.4378,
+        keywords: ["architecture", "history", "beer", "culture"],
+        locations: [
+            Location(id: 52, type: "historic squares", name: "Historic Square KL", rating: 5),
+            Location(id: 53, type: "breweries", name: "Brewery MN", rating: 4),
+            Location(id: 54, type: "cultural landmarks", name: "Cultural Landmark OP", rating: 4)
+        ]
+    ),
+    City(
+        id: 39,
+        name: "Istanbul",
+        description: "The City on Two Continents",
+        latitude: 41.0082,
+        longitude: 28.9784,
+        keywords: ["history", "culture", "architecture", "cuisine"],
+        locations: [
+            Location(id: 55, type: "historical sites", name: "Historical Site QR", rating: 5),
+            Location(id: 56, type: "mosques", name: "Mosque ST", rating: 4),
+            Location(id: 57, type: "markets", name: "Market UV", rating: 4)
+        ]
+    ),
+    City(
+        id: 40,
+        name: "Amsterdam",
+        description: "The Venice of the North",
+        latitude: 52.3676,
+        longitude: 4.9041,
+        keywords: ["canals", "art", "bicycles", "nightlife"],
+        locations: [
+            Location(id: 58, type: "canal cruises", name: "Canal Cruise WX", rating: 5),
+            Location(id: 59, type: "art museums", name: "Art Museum YZ", rating: 4),
+            Location(id: 60, type: "nightclubs", name: "Nightclub AB", rating: 4)
+        ]
+    ),
+    City(
+        id: 41,
+        name: "Vienna",
+        description: "The City of Music",
+        latitude: 48.2082,
+        longitude: 16.3738,
+        keywords: ["music", "history", "architecture", "coffee"],
+        locations: [
+            Location(id: 61, type: "concert halls", name: "Concert Hall CD", rating: 5),
+            Location(id: 62, type: "historic palaces", name: "Palace EF", rating: 4),
+            Location(id: 63, type: "coffeehouses", name: "Coffeehouse GH", rating: 4)
+        ]
+    ),
+    City(
+        id: 42,
+        name: "Florence",
+        description: "The Cradle of the Renaissance",
+        latitude: 43.7696,
+        longitude: 11.2558,
+        keywords: ["art", "architecture", "history", "wine"],
+        locations: [
+            Location(id: 64, type: "art galleries", name: "Art Gallery IJ", rating: 5),
+            Location(id: 65, type: "historical landmarks", name: "Historical Landmark KL", rating: 4),
+            Location(id: 66, type: "wineries", name: "Winery MN", rating: 4)
+        ]
+    ),
+    City(
+        id: 43,
+        name: "Seoul",
+        description: "The Soul of Asia",
+        latitude: 37.5665,
+        longitude: 126.9780,
+        keywords: ["technology", "tradition", "food", "shopping"],
+        locations: [
+            Location(id: 67, type: "tech districts", name: "Tech District OP", rating: 5),
+            Location(id: 68, type: "historic temples", name: "Temple QR", rating: 4),
+            Location(id: 69, type: "markets", name: "Market ST", rating: 4)
+        ]
+    ),
+    City(
+        id: 44,
+        name: "New Delhi",
+        description: "The Capital of India",
+        latitude: 28.6139,
+        longitude: 77.2090,
+        keywords: ["history", "culture", "spirituality", "street food"],
+        locations: [
+            Location(id: 70, type: "historical monuments", name: "Monument UV", rating: 5),
+            Location(id: 71, type: "temples", name: "Temple WX", rating: 4),
+            Location(id: 72, type: "street food stalls", name: "Street Food Stall YZ", rating: 4)
+        ]
+    )
+]
+
+
+//2.1
+func findCities(name: String) -> [City] {
+    return cities.filter { $0.name.lowercased() == name.lowercased() }
+}
+
+let searchedCities = findCities(name: "Prague")
+print("Cities named Prague:")
+for city in searchedCities {
+    print(city)
+}
+print()
+
+//2.2
+func findCitiesByKeyword(keyword: String) -> [City] {
+    return cities.filter { $0.keywords.contains(keyword) }
+}
+
+let searchedKeywords = findCitiesByKeyword(keyword: "history")
+print("Cities with keyword history:")
+for city in searchedKeywords {
+    print(city.name)
+}
+print()
+
+//3.1
+func calculateDistance(city1: City, city2: City) -> Double {
+    let dx = city2.longitude - city1.longitude
+    let dy = city2.latitude - city1.latitude
+    return sqrt(dx * dx + dy * dy)
+}
+
+let prague = cities.first { $0.name == "Prague" }!
+let newDelhi = cities.first { $0.name == "New Delhi" }!
+
+let distance = calculateDistance(city1: prague, city2: newDelhi)
+print("Distance between Warsaw and Los Angeles: \(distance) kilometers")
+
+//3.2
+func findClosestAndFarthestCity(userLatitude: Double, userLongitude: Double) {
+    let distances = cities.map { city -> (city: City, distance: Double) in
+        let distance = calculateDistance(city1: City(id: 0, name: "", description: "", latitude: userLatitude, longitude: userLongitude, keywords: [], locations: []), city2: city)
+        return (city, distance)
+    }
+    
+    let sortedCities = distances.sorted { $0.distance < $1.distance }
+    
+    if let closestCity = sortedCities.first, let farthestCity = sortedCities.last {
+        print("\nClosest city: \(closestCity.city.name) - Distance: \(closestCity.distance) kilometers")
+        print("Farthest city: \(farthestCity.city.name) - Distance: \(farthestCity.distance) kilometers")
+    } else {
+        print("No cities found.")
+    }
+}
+
+//warsaw
+let userLatitude = 52.2297
+let userLongitude = 21.0122 
+findClosestAndFarthestCity(userLatitude: userLatitude, userLongitude: userLongitude)
+
+//3.3
+func findTwoFarthestCities() {
+    var maxDistance = 0.0
+    var farthestCities: (City, City)?
+    
+    for i in 0..<cities.count {
+        for j in i+1..<cities.count {
+            let distance = calculateDistance(city1: cities[i], city2: cities[j])
+            if distance > maxDistance {
+                maxDistance = distance
+                farthestCities = (cities[i], cities[j])
+            }
+        }
+    }
+    
+    if let cities = farthestCities {
+        print("\nFirst farthest city: \(cities.0.name) - Distance: \(maxDistance) kilometers")
+        print("Second farthest city: \(cities.1.name) - Distance: \(maxDistance) kilometers\n")
+    } else {
+        print("Not enough cities to find the two farthest.")
+    }
+}
+
+findTwoFarthestCities()
+
+//5.1
+func citiesWithFiveStarRestaurants() -> [City] {
+    return cities.filter { city in
+        return city.locations.contains(where: { $0.type == "restaurants" && $0.rating == 5 })
+    }
+}
+
+//5.2
+func locationsSortedByRating(forCity city: City) -> [Location] {
+    return city.locations.sorted { $0.rating > $1.rating }
+}
+
+//5.3
+func displayCitiesWithFiveStarRestaurants() {
+    for city in cities {
+        let fiveStarRestaurants = city.locations.filter { $0.type == "restaurants" && $0.rating == 5 }
+        if fiveStarRestaurants.count > 0 { 
+        print("City: \(city.name) - Number of 5-star restaurants: \(fiveStarRestaurants.count)")
+        for restaurant in fiveStarRestaurants {
+            print(" - \(restaurant.name) - Rating: \(restaurant.rating)")
+        }
+        }
+    }
+}
+
+print("Cities with 5-star restaurants:")
+for city in citiesWithFiveStarRestaurants() {
+    print(city.name)
+}
+
+let w = cities.first { $0.name == "Warsaw" }!
+print("\nLocations in Warsaw sorted by rating:")
+for location in locationsSortedByRating(forCity: w) {
+    print(" - \(location.name) - Rating: \(location.rating)")
+}
+
+print("\nAll cities with information on 5-star restaurants:")
+displayCitiesWithFiveStarRestaurants()
+
+
