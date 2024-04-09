@@ -14,7 +14,7 @@ class MinMaxAgent:
                 case self.my_token:
                     return 1
                 case None:
-                    return self.rate_state(connect4)
+                    return 0
                 case _:
                     return -1
         if maximizing_player:
@@ -53,12 +53,13 @@ class MinMaxAgent:
                 elif current_board[i][j] != '_':
                     opponent_distance += abs(j - connect4.width / 2) + abs(i - connect4.height / 2)
 
-        # counting how many tokens each player has in a four
-        for four in connect4.iter_fours():
-            for token in four:
-                if token == self.my_token:
-                    my_tokens_in_fours += 1
-                elif token != '_':
-                    opponent_tokens_in_fours += 1
+        # # counting how many tokens each player has in a four
+        # for four in connect4.iter_fours():
+        #     for token in four:
+        #         if token == self.my_token:
+        #             my_tokens_in_fours += 1
+        #         elif token != '_':
+        #             opponent_tokens_in_fours += 1
 
-        return (1 / opponent_distance - 1 / my_distance) + (1/opponent_tokens_in_fours*2 - 1/my_tokens_in_fours*2)
+        # return (1 / opponent_distance - 1 / my_distance) + (1/opponent_tokens_in_fours*2 - 1/my_tokens_in_fours*2)
+        return 1 / my_distance - 1 / opponent_distance
