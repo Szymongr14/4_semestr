@@ -1,0 +1,11 @@
+Wnioski dla zadania 9:
+
+Wbudowana funkcja fzero w matlabie znajduje miejsce zerowe przy uzyciu 
+metod: bisekcji oraz interpolacji.
+
+Dla argumentu x0 = 6 funkcja fzero znalazła miejsce zerowe w x = 6.2832 w 13 iteracji, 
+używając metody interpolacji. Pierwsze 7 iteracji szuka przedziału miejsca zerowego.
+
+Dla argumentu x0 = 4.5 funkcja tangens posiada asymptote, więc znalezienie miejsca zerowego
+w tym punkcie jest niemożliwe, jednak funkcja fzero zwróciła wartość 4.7124, która znając wykres
+tangesna jest błędna.
