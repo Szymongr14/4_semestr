@@ -1,12 +1,15 @@
 import Foundation
 
-//1 and 4
+
+
+
 struct Location {
     let id: Int
     let type: String
     let name: String
     let rating: Int
 }
+
 
 struct City {
     let id: Int
@@ -321,32 +324,29 @@ let cities = [
 ]
 
 
-//2.1
-func findCities(name: String) -> [City] {
+func searchByName(name: String) -> [City] {
     return cities.filter { $0.name.lowercased() == name.lowercased() }
 }
 
-let searchedCities = findCities(name: "Prague")
+let temp_cities = searchByName(name: "Prague")
 print("Cities named Prague:")
-for city in searchedCities {
+for city in temp_cities {
     print(city)
 }
 print()
 
-//2.2
-func findCitiesByKeyword(keyword: String) -> [City] {
+func searchByKeyword(keyword: String) -> [City] {
     return cities.filter { $0.keywords.contains(keyword) }
 }
 
-let searchedKeywords = findCitiesByKeyword(keyword: "history")
+let temp_cities1 = searchByKeyword(keyword: "history")
 print("Cities with keyword history:")
-for city in searchedKeywords {
+for city in temp_cities1 {
     print(city.name)
 }
 print()
 
-//3.1
-func calculateDistance(city1: City, city2: City) -> Double {
+func countDistance(city1: City, city2: City) -> Double {
     let dx = city2.longitude - city1.longitude
     let dy = city2.latitude - city1.latitude
     return sqrt(dx * dx + dy * dy)
@@ -355,13 +355,12 @@ func calculateDistance(city1: City, city2: City) -> Double {
 let prague = cities.first { $0.name == "Prague" }!
 let newDelhi = cities.first { $0.name == "New Delhi" }!
 
-let distance = calculateDistance(city1: prague, city2: newDelhi)
-print("Distance between Warsaw and Los Angeles: \(distance) kilometers")
+let distance = countDistance(city1: prague, city2: newDelhi)
+print("Distance between New Delhi and Prague: \(distance) kilometers")
 
-//3.2
 func findClosestAndFarthestCity(userLatitude: Double, userLongitude: Double) {
     let distances = cities.map { city -> (city: City, distance: Double) in
-        let distance = calculateDistance(city1: City(id: 0, name: "", description: "", latitude: userLatitude, longitude: userLongitude, keywords: [], locations: []), city2: city)
+        let distance = countDistance(city1: City(id: 0, name: "", description: "", latitude: userLatitude, longitude: userLongitude, keywords: [], locations: []), city2: city)
         return (city, distance)
     }
     
@@ -371,23 +370,22 @@ func findClosestAndFarthestCity(userLatitude: Double, userLongitude: Double) {
         print("\nClosest city: \(closestCity.city.name) - Distance: \(closestCity.distance) kilometers")
         print("Farthest city: \(farthestCity.city.name) - Distance: \(farthestCity.distance) kilometers")
     } else {
-        print("No cities found.")
+        print("Error: cities not found!")
     }
 }
 
-//warsaw
-let userLatitude = 52.2297
-let userLongitude = 21.0122 
+let userLatitude = 49.9090
+let userLongitude = 11.9012
 findClosestAndFarthestCity(userLatitude: userLatitude, userLongitude: userLongitude)
 
-//3.3
+
 func findTwoFarthestCities() {
     var maxDistance = 0.0
     var farthestCities: (City, City)?
     
     for i in 0..<cities.count {
         for j in i+1..<cities.count {
-            let distance = calculateDistance(city1: cities[i], city2: cities[j])
+            let distance = countDistance(city1: cities[i], city2: cities[j])
             if distance > maxDistance {
                 maxDistance = distance
                 farthestCities = (cities[i], cities[j])
@@ -399,49 +397,39 @@ func findTwoFarthestCities() {
         print("\nFirst farthest city: \(cities.0.name) - Distance: \(maxDistance) kilometers")
         print("Second farthest city: \(cities.1.name) - Distance: \(maxDistance) kilometers\n")
     } else {
-        print("Not enough cities to find the two farthest.")
+        print("Error: farthest city not found!")
     }
 }
+
+
 
 findTwoFarthestCities()
 
-//5.1
-func citiesWithFiveStarRestaurants() -> [City] {
+func searchForMarketsWithRating4() -> [City] {
     return cities.filter { city in
-        return city.locations.contains(where: { $0.type == "restaurants" && $0.rating == 5 })
+        return city.locations.contains(where: { $0.type == "markets" && $0.rating == 4 })
     }
 }
 
-//5.2
+
+
 func locationsSortedByRating(forCity city: City) -> [Location] {
     return city.locations.sorted { $0.rating > $1.rating }
 }
 
-//5.3
-func displayCitiesWithFiveStarRestaurants() {
+func displaysearchForMarketsWithRating4() {
     for city in cities {
-        let fiveStarRestaurants = city.locations.filter { $0.type == "restaurants" && $0.rating == 5 }
-        if fiveStarRestaurants.count > 0 { 
-        print("City: \(city.name) - Number of 5-star restaurants: \(fiveStarRestaurants.count)")
-        for restaurant in fiveStarRestaurants {
-            print(" - \(restaurant.name) - Rating: \(restaurant.rating)")
-        }
+        let markets = city.locations.filter { $0.type == "restaurants" && $0.rating == 4 }
+        if markets.count > 0 { 
+            print("City: \(city.name) - Number of 5-star restaurants: \(markets.count)")
+            for market in markets {
+                print(" - \(market.name) - Rating: \(market.rating)")
+            }
         }
     }
 }
 
-print("Cities with 5-star restaurants:")
-for city in citiesWithFiveStarRestaurants() {
+print("Cities with markets with rating 4:")
+for city in searchForMarketsWithRating4() {
     print(city.name)
 }
-
-let w = cities.first { $0.name == "Warsaw" }!
-print("\nLocations in Warsaw sorted by rating:")
-for location in locationsSortedByRating(forCity: w) {
-    print(" - \(location.name) - Rating: \(location.rating)")
-}
-
-print("\nAll cities with information on 5-star restaurants:")
-displayCitiesWithFiveStarRestaurants()
-
-
