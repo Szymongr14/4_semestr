@@ -22,12 +22,14 @@ class RandomForest:
 
     def predict(self, X):
         tree_predictions = []
+        # aggregate predictions from all trees
         for tree in self.forest:
             tree_predictions.append(tree.predict(X))
         forest_predictions = list(map(lambda x: sum(x) / len(x), zip(*tree_predictions)))
         return forest_predictions
 
     def bagging(self, X, y):
+        # bootstrap dataset
         indices = []
         for _ in range((X.shape[0])):
             indices.append(np.random.choice(X.shape[0]))

@@ -15,15 +15,21 @@ class Node:
         best_idx = 0
 
         for idx in possible_splits:
-            left = y[:idx + 1]
-            right = y[idx + 1:]
-            left_pos = np.sum(left)
-            left_neg = len(left) - left_pos
-            right_pos = np.sum(right)
-            right_neg = len(right) - right_pos
-            gini_left = 1 - (left_pos / len(left)) ** 2 - (left_neg / len(left)) ** 2
-            gini_right = 1 - (right_pos / len(right)) ** 2 - (right_neg / len(right)) ** 2
-            gini_gain = len(left) / len(y) * gini_left + len(right) / len(y) * gini_right
+            left_side = y[:idx + 1]
+            right_side = y[idx + 1:]
+            left_pos = np.sum(left_side == 1)
+            left_neg = np.sum(left_side == 0)
+
+            right_pos = np.sum(right_side == 1)
+            right_neg = np.sum(right_side == 0)
+
+            left = left_pos + left_neg
+            right = right_pos + right_neg
+
+            gini_left = 1 - (left_pos/(left_pos + left_neg)) ** 2 - (left_neg/(left_pos + left_neg)) ** 2
+            gini_right = 1 - (right_pos/(right_pos + right_neg)) ** 2 - (right_neg/(right_pos + right_neg)) ** 2
+            gini_gain = 1 - (left/(left + right)) * gini_left - (right/(left + right)) * gini_right
+
             if gini_gain > best_gain:
                 best_gain = gini_gain
                 best_idx = idx

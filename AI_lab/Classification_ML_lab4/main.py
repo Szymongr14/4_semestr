@@ -1,3 +1,5 @@
+import math
+
 import numpy as np
 
 from decision_tree import DecisionTree
@@ -15,7 +17,7 @@ def main():
     dt.evaluate(*train_data)
     dt.evaluate(*test_data)
 
-    rf = RandomForest({"ntrees": 10, "feature_subset": 2, "depth": 14})
+    rf = RandomForest({"ntrees": 10, "feature_subset": math.ceil(np.sqrt(len(test_data[0][0]))), "depth": 14})
     rf.train(*train_data)
     rf.evaluate(*train_data)
     rf.evaluate(*test_data)
