@@ -14,11 +14,11 @@ class SendThread(threading.Thread):
 
     def run(self):
         while True:
-            message = input(" -> ")
+            message = input()
             if message.lower().strip() == 'quit':
+                self.s_socket.send("quit".encode())
                 break
             self.s_socket.send(message.encode())
-        connected = [False]
 
 
 def client_program():
@@ -31,10 +31,11 @@ def client_program():
     send_thread = SendThread(client_socket)
     send_thread.start()
 
-    while connected:
+    while True:
         data = client_socket.recv(1024).decode()
+        if data == "quit":
+            break
         print(data)
-        print("-> ", end="")
 
     client_socket.close()
 
