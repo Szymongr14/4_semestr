@@ -10,11 +10,11 @@ for i in range(0, ITERATOR + 1):
     random_number = random.randint(0, 100)
     # print(random_number)
 
-    if random_number < 20:
+    if random_number < 5:
         result = 1
-    elif random_number < 50:
+    elif random_number < 20:
         result = 2
-    elif random_number < 90:
+    elif random_number < 45:
         result = 3
     else:
         result = 4
