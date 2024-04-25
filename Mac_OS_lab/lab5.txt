@@ -1,0 +1,87 @@
+class Game{
+    var game_over: Int = 0
+    var level: Int = 0
+    var word: String = ""
+    var attempts: Int = 0;
+    var category: String = ""
+    
+    let easy_cities: [String] = ["Paris", "London", "Mediolan"]
+    let medium_cities: [String] = ["Warszawa", "Moscow", "Rome"]
+    let hard_cities: [String] = ["Palermo", "Lombardy", "Cracow"]
+    
+    let easy_famous_people: [String] = ["Stephen King", "Leo Messi", "Justin Biber"]
+    let medium_famous_people: [String] = ["Will Smith", "Sylvester Stalone", "Tom Cruise"]
+    let hard_famous_people: [String] = ["Robert De Niro", "Gordon Ramsey", "Magda Gessler"]
+    init(){
+        
+    }
+    
+    
+    
+    func start_new_game(){
+        var correct_input: Int = 0
+        
+        print("Choose category:")
+        print("1. Cities")
+        print("2. Famous people")
+        repeat{
+            let str: String = readLine(strippingNewline: true)!
+            //print(str)
+            switch(str){
+                case "1":
+                    self.category = "city"
+                    correct_input = 1
+                    break
+                case "2":
+                    self.category = "famous people"
+                    correct_input = 1
+                    break
+                default:
+                    print("Incorrect value! Try again!")
+                    break
+            }
+        }while correct_input == 0
+        
+        repeat{
+            print("Choose level:")
+            print("1. Easy")
+            print("2. Medium")
+            print("3. Hard")
+            let str1: String = readLine(strippingNewline: true)!
+            //print(str1)
+            switch(str1){
+                case "1":
+                    self.level = 1
+                    correct_input = 1
+                    break
+                case "2":
+                    self.level = 2
+                    correct_input = 1
+                    break
+                case "3":
+                    self.level = 3
+                    correct_input = 1
+                    break
+                default: 
+                    print("Incorrect value! Try again!")
+                    break
+            }
+        }while correct_input == 0
+    }
+    
+    func print_vars(){
+        print(category)
+        print(level)
+    }
+}
+
+var game = Game()
+
+while game.game_over == 0{
+    
+    
+}
+
+game.start_new_game()
+game.print_vars()
+
