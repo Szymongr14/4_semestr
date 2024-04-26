@@ -4,37 +4,68 @@ class Game{
     var word: String = ""
     var attempts: Int = 0;
     var category: String = ""
+    var found_letters: [Character] = []
+    var guessed_word: String = ""
+    var provided_letters = Set<Character>()
     
-    let easy_cities: [String] = ["Paris", "London", "Mediolan"]
-    let medium_cities: [String] = ["Warszawa", "Moscow", "Rome"]
-    let hard_cities: [String] = ["Palermo", "Lombardy", "Cracow"]
+    let cities: [String] = ["Paris", "London", "Mediolan", "Warszawa", "Moscow", "Rome", "Palermo", "Lombardy", "Cracow"]
     
-    let easy_famous_people: [String] = ["Stephen King", "Leo Messi", "Justin Biber"]
-    let medium_famous_people: [String] = ["Will Smith", "Sylvester Stalone", "Tom Cruise"]
-    let hard_famous_people: [String] = ["Robert De Niro", "Gordon Ramsey", "Magda Gessler"]
-    init(){
-        
-    }
+    let famous_people: [String] = ["Stephen King", "Leo Messi", "Justin Biber", "Will Smith", "Sylvester Stalone", "Tom Cruise", "Robert De Niro", "Gordon Ramsey", "Magda Gessler"]
     
+    let movies: [String] = ["The Shawshank Redemption", "The Godfather", "Pulp Fiction", "Fight Club", "Forrest Gump"]
     
+    let programming_languages: [String] = ["Swift", "Python", "Java", "C++", "JavaScript"]
     
+    let food: [String] = ["Pizza", "Sushi", "Tacos", "Pasta", "Burger"]
+    
+    let countries: [String] = ["France", "United Kingdom", "Italy", "Poland", "Russia"]
+
     func start_new_game(){
         var correct_input: Int = 0
-        
-        print("Choose category:")
+        self.found_letters = []
+        self.provided_letters = []
+        self.game_over = 0
+
         print("1. Cities")
         print("2. Famous people")
+        print("3. Movies")
+        print("4. Programming Languages")
+        print("5. Food")
+        print("6. Countries")
+        print("Choose category: ", terminator:"")
         repeat{
             let str: String = readLine(strippingNewline: true)!
             //print(str)
             switch(str){
                 case "1":
-                    self.category = "city"
                     correct_input = 1
+                    self.category = "City"
+                    self.guessed_word = self.cities.randomElement()!
                     break
                 case "2":
-                    self.category = "famous people"
                     correct_input = 1
+                    self.category = "Famous people"
+                    self.guessed_word = self.famous_people.randomElement()!
+                    break
+                case "3":
+                    correct_input = 1
+                    self.category = "Movies"
+                    self.guessed_word = self.movies.randomElement()!
+                    break
+                case "4":
+                    correct_input = 1
+                    self.category = "Programming Languages"
+                    self.guessed_word = self.programming_languages.randomElement()!
+                    break
+                case "5":
+                    correct_input = 1
+                    self.category = "Food"
+                    self.guessed_word = self.food.randomElement()!
+                    break
+                case "6":
+                    correct_input = 1
+                    self.category = "Countries"
+                    self.guessed_word = self.countries.randomElement()!
                     break
                 default:
                     print("Incorrect value! Try again!")
@@ -43,45 +74,144 @@ class Game{
         }while correct_input == 0
         
         repeat{
-            print("Choose level:")
             print("1. Easy")
             print("2. Medium")
             print("3. Hard")
+            print("Choose level: ", terminator:"")
             let str1: String = readLine(strippingNewline: true)!
+            correct_input = 0
             //print(str1)
             switch(str1){
                 case "1":
                     self.level = 1
                     correct_input = 1
+                    self.attempts = 15
                     break
                 case "2":
                     self.level = 2
                     correct_input = 1
+                    self.attempts = 10
                     break
                 case "3":
                     self.level = 3
+                    self.attempts = 5
                     correct_input = 1
                     break
                 default: 
                     print("Incorrect value! Try again!")
                     break
             }
+            
         }while correct_input == 0
     }
     
     func print_vars(){
-        print(category)
         print(level)
+        print(guessed_word)
+    }
+    
+    func print_board(){
+        var empty_space = false
+        print("Attempts remain: \(self.attempts)")
+        print("Category: \(self.category)")
+        print("You've already provided letters: ", terminator:"")
+        for char in provided_letters{
+            print("\(char) ", terminator:"")
+        }
+        print()
+        for character in self.guessed_word{
+            if character != " " && !found_letters.contains(character){
+                print(" _ ", separator:" ", terminator:"")
+                empty_space = true
+            }
+            else if found_letters.contains(character){
+                print(" \(character) ", separator:" ", terminator:"")
+            }
+            else{
+                print("   ", separator:" ", terminator:"")
+            }
+        }
+        print()
+        if !empty_space{
+            print("You won! Congratulations!")
+            self.game_over = 1
+        }
+    }
+    
+func logic() {
+    if self.game_over == 1 {
+        return
+    }
+    print("\nType character: ", terminator:"")
+    if let char = readLine(strippingNewline: true) {
+        if char.count != 1 {
+            print("Incorrect value!")
+            logic()
+        } else {
+            // Use unwrappedValue safely here
+            if !self.guessed_word.contains(char) && !self.guessed_word.contains(char.uppercased()) {
+                self.attempts -= 1
+                if attempts == 0 {
+                    self.game_over = 1
+                    print("Game over! Try Again!")
+                    print("Word was: \(self.guessed_word)")
+                }
+                self.provided_letters.insert(char.first!)
+            } else {
+                switch(self.level) {
+                case 1:
+                    self.attempts = 15
+                case 2:
+                    self.attempts = 10
+                case 3:
+                    self.attempts = 5
+                default:
+                    break
+                }
+                self.found_letters.append(char.first!)
+                self.found_letters.append(char.uppercased().first!)
+            }
+        }
+    } else {
+        print("Incorrect value!")
+        logic()
+    }
+}
+    
+    
+    func main_menu(){
+        var exit: Int = 0
+        
+        repeat{
+            print("1. Start new game")
+            print("2. Exit")
+            print("Choose an option: ", terminator:"")
+            let str: String = readLine(strippingNewline: true)!
+                switch(str){
+                    case "1":
+                        self.start_new_game()
+                        while self.game_over == 0{
+                            //self.print_vars()
+                            self.print_board()
+                            self.logic()
+                        }
+                        break
+                    case "2":
+                        exit = 1
+                        break
+                    default:
+                        print("Incorrect input!")
+                        break
+                }
+        }while exit != 1
     }
 }
 
+
+
+
 var game = Game()
+game.main_menu()
 
-while game.game_over == 0{
-    
-    
-}
 
-game.start_new_game()
-game.print_vars()
 
