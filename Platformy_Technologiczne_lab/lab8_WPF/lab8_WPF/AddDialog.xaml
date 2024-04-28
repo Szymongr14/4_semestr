@@ -1,0 +1,25 @@
+<Window x:Class="lab8_WPF.InputDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="InputDialog" Height="300" Width="200">
+    <DockPanel VerticalAlignment="Top">
+        <DockPanel DockPanel.Dock="Top" Margin="0,20,0,20">
+            <Label Content="File Name: " VerticalAlignment="Center"></Label>
+            <TextBox Name="FileNameTextBox" MaxHeight="20" MinWidth="100" MaxWidth="50"></TextBox>
+        </DockPanel >
+        <StackPanel Margin="0,0,0,30" HorizontalAlignment="Center" Orientation="Horizontal" DockPanel.Dock="Top">
+            <RadioButton IsChecked="True" HorizontalAlignment="Center" Name="RadioButtonFile" Content="File"/>
+            <RadioButton HorizontalAlignment="Center" Margin="5,0,0,0" Name="RadioButtonDirectory" Content="Directory"/> 
+        </StackPanel>
+        <StackPanel Margin="0,0,0,30" HorizontalAlignment="Center" Orientation="Vertical" DockPanel.Dock="Top">
+            <CheckBox Name="CheckBoxReadOnly" Content="ReadOnly" Margin="5,0,0,0" />
+            <CheckBox Name="CheckBoxArchive" Content="Archive" Margin="5,0,0,0" />
+            <CheckBox Name="CheckBoxHidden" Content="Hidden" Margin="5,0,0,0" />
+            <CheckBox Name="CheckBoxSystem" Content="System" Margin="5,0,0,0" />
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button VerticalAlignment="Bottom" FontSize="10" Margin="10,0,10,0" Content="Ok" MaxHeight="20" MinWidth="30" Click="OkButton_Click"/>
+            <Button VerticalAlignment="Bottom" FontSize="10" Margin="10,0,10,0" Content="Cancel" MaxHeight="20" MinWidth="40" Click="CancelButton_Click"/>
+        </StackPanel>
+    </DockPanel>
+</Window>

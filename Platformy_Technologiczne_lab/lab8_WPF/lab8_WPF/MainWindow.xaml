@@ -28,9 +28,15 @@
         <DockPanel>
             <DockPanel DockPanel.Dock="Left">
                 <TreeView DockPanel.Dock="Top" Name="MainTreeView" Visibility="Hidden" SelectedItemChanged="MainTreeView_OnSelectedItemChanged"/>
-                <TextBox DockPanel.Dock="Bottom" Text="Footer" Background="Gray" Visibility="Hidden"/>
+                <StatusBar VerticalAlignment="Top" MaxHeight="100">
+                    <StatusBarItem Visibility="{Binding ElementName=MainTreeView, Path=Visibility}">
+                        <TextBlock Name="StatusBarAttributes" Text="----" VerticalAlignment="Top"/>
+                    </StatusBarItem>
+                </StatusBar>
             </DockPanel>
-            <TextBlock DockPanel.Dock="Right" Name="MyTextBox" Text="" Visibility="Hidden"/>
+            <ScrollViewer Visibility="{Binding ElementName=MyTextBox, Path=Visibility}">
+                <TextBlock DockPanel.Dock="Right" Background="Gainsboro" Name="MyTextBox" Text="" Visibility="Hidden" Margin="10, 10, 10, 10"/>
+            </ScrollViewer>
         </DockPanel>
     </DockPanel>
 </Window>
