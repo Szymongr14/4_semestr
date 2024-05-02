@@ -1,0 +1,1 @@
+[V, original_Runge, original_sine, interpolated_Runge, interpolated_sine] = zadanie1();
