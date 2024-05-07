@@ -18,18 +18,16 @@ def initialize_centroids_kmeans_pp(data, k):
         return chosen_centroids
 
     while len(chosen_centroids) < k:
-        distances = []
+        new_centroid = None
+        max_distance = float('-inf')
         for point in data:
-            min_distance: float = float('inf')
+            distance: float = 0
             for centroid in chosen_centroids:
-                current_distance: float = count_distance(point, centroid)
-                if current_distance < min_distance:
-                    min_distance = current_distance
-            distances.append(min_distance)
-        distances = np.array(distances)
-        probabilities = distances / np.sum(distances)
-        random_index = np.random.choice(len(data), p=probabilities)
-        chosen_centroids.append(data[random_index])
+                distance += count_distance(point, centroid)
+            if distance > max_distance:
+                max_distance = distance
+                new_centroid = point
+        chosen_centroids.append(new_centroid)
 
     return chosen_centroids
 
@@ -67,7 +65,7 @@ def mean_intra_distance(data, assignments, centroids):
     return np.sqrt(np.sum((data - centroids[assignments, :]) ** 2))
 
 
-def k_means(data, num_centroids, kmeansplusplus=False):
+def k_means(data, num_centroids, kmeansplusplus):
     # centroids initialization
     if kmeansplusplus:
         centroids = initialize_centroids_kmeans_pp(data, num_centroids)
@@ -76,7 +74,7 @@ def k_means(data, num_centroids, kmeansplusplus=False):
 
     assignments = assign_to_cluster(data, centroids)
     for i in range(100):  # max number of iteration = 100
-        print(f"Intra distance after {i} iterations: {mean_intra_distance(data, assignments, centroids)}")
+        # print(f"Intra distance after {i} iterations: {mean_intra_distance(data, assignments, centroids)}")
         centroids = update_centroids(data, assignments, centroids)
         new_assignments = assign_to_cluster(data, centroids)
         if np.all(new_assignments == assignments):  # stop if nothing changed
