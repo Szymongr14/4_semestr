@@ -11,8 +11,7 @@ namespace Lab7
         private static int depth = 0;
         public static void Main(string[] args)
         {
-            var path = args[0];
-            var dirs = Directory.GetFiles(path);
+            var path = "..\\..\\..\\..\\";
             
             RecursiveSearch(path);
             depth = 0;
@@ -27,6 +26,8 @@ namespace Lab7
             {
                 Console.WriteLine($"{key.Key} -> {key.Value}");
             }
+            
+            Console.Read();
         }
 
         private static void RecursiveSearch(string currentDir)
