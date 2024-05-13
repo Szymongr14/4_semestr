@@ -20,17 +20,14 @@ using Path = System.IO.Path;
 
 namespace lab8_WPF;
 
-/// <summary>
-/// Interaction logic for MainWindow.xaml
-/// </summary>
 public partial class MainWindow : Window
 {
     public MainWindow()
     {
         InitializeComponent();
-        var root = RecursiveSearch("C:\\Users\\szymo\\Documents\\GitHub\\4_semestr\\Metody_Numeryczne_lab");
-        MainTreeView.Visibility = Visibility.Visible;
-        MainTreeView.Items.Add(root);
+        // var root = RecursiveSearch("C:\\Users\\szymo\\Documents\\GitHub\\4_semestr\\Metody_Numeryczne_lab");
+        // MainTreeView.Visibility = Visibility.Visible;
+        // MainTreeView.Items.Add(root);
     }
 
     private void MiOpen_OnClick(object sender, RoutedEventArgs e)
