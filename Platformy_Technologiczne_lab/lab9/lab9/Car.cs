@@ -2,10 +2,27 @@ using System.Xml.Serialization;
 
 namespace lab9;
 
-[XmlRoot ("cars")]
-public class Car(string model, Engine engine, int year)
+[Serializable]
+[XmlType("car")]
+public class Car
 {
-    public string Model = model;
-    public int Year = year;
-    public Engine Engine = engine;
+    public string Model;
+    public int Year;
+    [XmlElement("motor")]
+    public Engine Engine;
+    
+    public Car(string model, Engine engine, int year)
+    {
+        Model = model;
+        Engine = engine;
+        Year = year;
+    }
+    
+    public Car() 
+    {}
+
+    public override string ToString()
+    {
+        return $"Model: {Model}, Year: {Year}, Engine: {Engine}";
+    }
 }

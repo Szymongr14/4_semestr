@@ -1,9 +1,13 @@
-﻿using System.Xml.Serialization;
+﻿using System.Xml.Linq;
+using System.Xml.Serialization;
+using System.Xml.XPath;
 
 namespace lab9;
 
 public static class Program
 {
+    private const string XmlFilePath = @"..\..\..\Cars.xml";
+    private const string LinqToXmlFilePath = @"..\..\..\CarsFromLinq.xml";
     public static void Main()
     {
         var myCars = new List<Car>(){
@@ -19,25 +23,96 @@ public static class Program
         };
 
         FirstTask(myCars);
+        SecondTask(myCars);
+        ThirdTask();
+        CreateXmlFromLinq(myCars);
+        CreateXhtmlTableFromLinq(myCars);
+    }
+    
+    private static void CreateXhtmlTableFromLinq(List<Car> myCars)
+    {
+        // Load the XHTML template
+        XDocument xhtmlDoc = XDocument.Load("template.html");
+
+        // Create the table element
+        XElement table = new XElement(XName.Get("table", "http://www.w3.org/1999/xhtml"));
+
+        // Add a row for each car in myCars
+        foreach (var car in myCars)
+        {
+            XElement row = new XElement(XName.Get("tr", "http://www.w3.org/1999/xhtml"),
+                new XElement(XName.Get("td", "http://www.w3.org/1999/xhtml"), car.Model),
+                new XElement(XName.Get("td", "http://www.w3.org/1999/xhtml"), car.Year),
+                new XElement(XName.Get("td", "http://www.w3.org/1999/xhtml"), car.Engine.Type),
+                new XElement(XName.Get("td", "http://www.w3.org/1999/xhtml"), car.Engine.Displacement),
+                new XElement(XName.Get("td", "http://www.w3.org/1999/xhtml"), car.Engine.HorsePower)
+            );
+            table.Add(row);
+        }
+
+        // Find the body element and add the table to it
+        XElement? body = xhtmlDoc.Root!.Element(XName.Get("body", "http://www.w3.org/1999/xhtml"));
+        body?.Add(table);
+
+        // Save the modified XHTML document
+        xhtmlDoc.Save("CarsTable.html");
+    }
+    
+    private static void CreateXmlFromLinq(List<Car> myCars)
+    {
+        IEnumerable<XElement> nodes = myCars.Select(car => new XElement("car",
+            new XElement("Model", car.Model),
+            new XElement("Year", car.Year),
+            new XElement("motor", new XAttribute("model", car.Engine.Type),
+                new XElement("Displacement", car.Engine.Displacement),
+                new XElement("HorsePower", car.Engine.HorsePower)
+            )
+        ));
+        XElement rootNode = new XElement("cars", nodes); // stwórz węzeł zawierający wyniki zapytania
+        rootNode.Save(LinqToXmlFilePath);
+    }
+
+    private static void ThirdTask()
+    {
+        var xmlFile = XDocument.Load(XmlFilePath);
+        
+        const string xPathQuery1 = "//motor[@model!='TDI']";
+        IEnumerable<XElement> hpValues = xmlFile.XPathSelectElements(xPathQuery1);
+        double avgHp = hpValues.Average(x => double.Parse(x.Value));
+        // Console.WriteLine($"AvgHP for not TDI engines = {avgHp}");
+        
+        const string xPathQuery2 = "//car/Model";
+        IEnumerable<XElement> modelNodes = xmlFile.XPathSelectElements(xPathQuery2);
+        IEnumerable<string> distinctModels = modelNodes.Select(x => x.Value).Distinct();
+        // Console.Write("Unique models: ");
+        // foreach (var model in distinctModels)
+        // {
+        //     Console.Write(model);
+        //     Console.Write(", ");
+        // }
     }
 
     private static void SecondTask(IEnumerable<Car> cars)
     {
-        var serializer = new XmlSerializer(typeof(List<Car>));
-        using (var textWriter = new StringWriter())
+        // Serialization
+        var xmlRootAttribute = new XmlRootAttribute("Cars");
+        var serializer = new XmlSerializer(typeof(List<Car>), xmlRootAttribute);
+        
+        using (var streamWriter = new StreamWriter(XmlFilePath))
         {
-            serializer.Serialize(textWriter, cars);
-            Console.WriteLine(textWriter.ToString());
+            serializer.Serialize(streamWriter, cars);
         }
-
-        // Deserializacja z XML
-        var deserializer = new XmlSerializer(typeof(List<Car>));
-        using (var reader = new StringReader())
+        
+        // Console.WriteLine(textWriter.ToString());
+        
+        // Deserialization
+        using (var streamReader = new StreamReader(XmlFilePath))
         {
-            var deserializedCars = (List<Car>)deserializer.Deserialize(reader)!;
+            List<Car> deserializedCars = (List<Car>)serializer.Deserialize(streamReader)!;
+            
             foreach (var car in deserializedCars)
             {
-                Console.WriteLine($"Model: {car.Model}, Engine: {car.Engine.Model}, Year: {car.Year}");
+                // Console.WriteLine(car);
             }
         }
     }

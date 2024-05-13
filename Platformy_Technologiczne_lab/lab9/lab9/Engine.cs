@@ -2,13 +2,26 @@ using System.Xml.Serialization;
 
 namespace lab9;
 
-[XmlRoot("engine")]
-public class Engine(double displacement, int horsePower, string type, string model)
+[Serializable]
+public class Engine
 {
-    public double Displacement { get; set; } = displacement;
-    public int HorsePower { get; set; } = horsePower;
-    public string Type { get; set; } = type;
-
+    public double Displacement { get; set; }
+    public int HorsePower { get; set; }
     [XmlAttribute("model")]
-    public string Model { get; set; } = model;
+    public string Type { get; set; }
+    
+    public Engine(double displacement, int horsePower, string type)
+    {
+        Displacement = displacement;
+        HorsePower = horsePower;
+        Type = type;
+    }
+    
+    public Engine() 
+    {}
+
+    public override string ToString()
+    {
+        return $"Displacement: {Displacement}, HorsePower: {HorsePower}, Type: {Type}";
+    }
 }
