@@ -8,6 +8,8 @@ public static class Program
 {
     private const string XmlFilePath = @"..\..\..\Cars.xml";
     private const string LinqToXmlFilePath = @"..\..\..\CarsFromLinq.xml";
+    private const string PathToTemplate = @"..\..\..\template.html";
+    private const string PathToHtmlResultFile = @"..\..\..\CarsTable.html";
     public static void Main()
     {
         var myCars = new List<Car>(){
@@ -27,17 +29,37 @@ public static class Program
         ThirdTask();
         CreateXmlFromLinq(myCars);
         CreateXhtmlTableFromLinq(myCars);
+        ModifyXml();
+    }
+
+    private static void ModifyXml()
+    {
+        XDocument doc = XDocument.Load(XmlFilePath);
+
+        foreach (XElement hpElement in doc.Descendants("HorsePower"))
+        {
+            hpElement.Name = "hp";
+        }
+
+        foreach (XElement carElement in doc.Descendants("car"))
+        {
+            XElement? yearElement = carElement.Element("Year");
+            XElement? modelElement = carElement.Element("Model");
+
+            if (yearElement != null && modelElement != null)
+            {
+                modelElement.Add(new XAttribute("year", yearElement.Value));
+                yearElement.Remove();
+            }
+        }
+        
+        doc.Save(XmlFilePath);
     }
     
     private static void CreateXhtmlTableFromLinq(List<Car> myCars)
     {
-        // Load the XHTML template
-        XDocument xhtmlDoc = XDocument.Load("template.html");
-
-        // Create the table element
+        XDocument xhtmlDoc = XDocument.Load(PathToTemplate);
         XElement table = new XElement(XName.Get("table", "http://www.w3.org/1999/xhtml"));
-
-        // Add a row for each car in myCars
         foreach (var car in myCars)
         {
             XElement row = new XElement(XName.Get("tr", "http://www.w3.org/1999/xhtml"),
@@ -55,10 +77,10 @@ public static class Program
         body?.Add(table);
 
         // Save the modified XHTML document
-        xhtmlDoc.Save("CarsTable.html");
+        xhtmlDoc.Save(PathToHtmlResultFile);
     }
     
-    private static void CreateXmlFromLinq(List<Car> myCars)
+    private static void CreateXmlFromLinq(IEnumerable<Car> myCars)
     {
         IEnumerable<XElement> nodes = myCars.Select(car => new XElement("car",
             new XElement("Model", car.Model),
@@ -68,7 +90,7 @@ public static class Program
                 new XElement("HorsePower", car.Engine.HorsePower)
             )
         ));
-        XElement rootNode = new XElement("cars", nodes); // stwórz węzeł zawierający wyniki zapytania
+        XElement rootNode = new XElement("cars", nodes);
         rootNode.Save(LinqToXmlFilePath);
     }
 
