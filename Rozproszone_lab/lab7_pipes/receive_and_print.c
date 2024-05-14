@@ -5,11 +5,16 @@
 
 int main()
 {
-    char buff[50];
     const int fd = open("mainfifo", O_RDONLY);
-    read(fd, buff, sizeof(buff));
-    if(strcmp(buff, "exit") == 0) return 0;
-    printf("RECIVED TEXT: %s\n", buff);
-
-    return 0;
+    while(1){
+        char buff[50];
+        read(fd, buff, sizeof(buff));
+        printf("RECIVED TEXT: %s\n", buff);
+        if(strcmp(buff, "exit\n") == 0)
+        {
+            printf("Detected 'exit'\nClosing...");
+            close(fd);
+            return 0;
+        }
+    }
 }
