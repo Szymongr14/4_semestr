@@ -6,10 +6,10 @@ namespace lab9;
 
 public static class Program
 {
-    private const string XmlFilePath = @"..\..\..\Cars.xml";
-    private const string LinqToXmlFilePath = @"..\..\..\CarsFromLinq.xml";
-    private const string PathToTemplate = @"..\..\..\template.html";
-    private const string PathToHtmlResultFile = @"..\..\..\CarsTable.html";
+    private const string XmlFilePath = @"Cars.xml";
+    private const string LinqToXmlFilePath = @"CarsFromLinq.xml";
+    private const string PathToTemplate = @"template.html";
+    private const string PathToHtmlResultFile = @"CarsTable.html";
     public static void Main()
     {
         var myCars = new List<Car>(){
