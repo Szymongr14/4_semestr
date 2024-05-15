@@ -1,7 +1,8 @@
-function [M,N,P,R,x_coarse,y_coarse,F_coarse,x_fine,y_fine,F_fine] = zadanie4()
+function [M,N,P,R,x_coarse,y_coarse,F_coarse,x_fine,y_fine,F_fine] = zadanie5()
 
-P = 50; % liczba unikalnych współrzędnych x punktów dla których będzie obliczana interpolacja
-R = 50; % liczba unikalnych współrzędnych y punktów dla których będzie obliczana interpolacja
+
+P = 150; % liczba unikalnych współrzędnych x punktów dla których będzie obliczana interpolacja
+R = 150; % liczba unikalnych współrzędnych y punktów dla których będzie obliczana interpolacja
 M = 30; % liczba węzłów interpolacji wzdłuż osi X (stopień wielomianu zmiennej x: M-1)
 N = 30; % liczba węzłów interpolacji wzdłuż osi Y (stopień wielomianu zmiennej y: N-1)
 
@@ -9,7 +10,6 @@ N = 30; % liczba węzłów interpolacji wzdłuż osi Y (stopień wielomianu zmie
 x_coarse = linspace(0, 1, M);
 y_coarse = linspace(0, 1, N);
 [X_coarse, Y_coarse] = meshgrid(x_coarse, y_coarse);
-
 F_coarse = sin(X_coarse*2*pi) .* abs(Y_coarse-0.5);
 
 
@@ -45,20 +45,11 @@ y_fine = linspace(0, 1, R);
 F_fine = zeros(size(X_fine));
 % zadanie B: zdefiniuj obliczenia wartości wielomianu interpolującego. Rezultat obliczeń zapisz w zmiennej F_fine.
 
-for x = 1:P
-    for y = 1:R
-        F = 0;
-        for i = 0:(M-1)
-            for j = 0:(N-1)
-            % Indeks współczynnika w wektorze coeffs
-                idx = M * i + j + 1;
-            % Dodanie składnika wielomianu
-                F = F + coeffs(idx) * x_fine(x)^i * y_fine(y)^j;
-            end
-        end
-        F_fine(y,x) = F;
-        
+for i = 0:(M-1)
+    for j = 0:(N-1)
+        F_fine = F_fine + coeffs(i*N + j + 1) * X_fine.^i .* Y_fine.^j;
     end
+
 end
 
 subplot(2,1,2);

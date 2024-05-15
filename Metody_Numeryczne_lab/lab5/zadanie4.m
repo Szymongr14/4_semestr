@@ -16,7 +16,6 @@ F_coarse = zeros(N,M);
 for i = 1:M
     for j = 1:N
         F_coarse(j,i) =  sin(2 * power(x_coarse(i),3)+pi*power(y_coarse(j),4));
-        
     end
 end
 
@@ -53,10 +52,9 @@ y_fine = linspace(0, 1, R);
 F_fine = zeros(size(X_fine));
 % zadanie B: zdefiniuj obliczenia wartości wielomianu interpolującego. Rezultat obliczeń zapisz w zmiennej F_fine.
 
-for i = 1:P
-    for j = 1:R
-        F_fine(j,i) =  coeffs(1)+coeffs(2)*y_fine(j)+coeffs(3)*power(y_fine(j),2)+coeffs(4)*x_fine(i)+coeffs(5)*x_fine(i)*y_fine(j)+coeffs(6)*x_fine(i)*power(y_fine(j),2);
-        
+for i = 0:(M-1)
+    for j = 0:(N-1)
+        F_fine = F_fine + coeffs(i*N + j + 1) * X_fine.^i .* Y_fine.^j;
     end
 end
 
