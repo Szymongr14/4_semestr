@@ -48,9 +48,9 @@ def plot_data(x, y, ax=None, plot_xy_range=None, x_grid=None, y_grid=None,
         grid_size = int(np.sqrt(x_grid.shape[0]))
         x1_grid = x_grid[:, 0].reshape((grid_size, grid_size))
         x2_grid = x_grid[:, 1].reshape((grid_size, grid_size))
-        y_grid = y_grid.reshape((grid_size, grid_size))
+        y_grid = np.array(y_grid).reshape((grid_size, grid_size))  # Convert y_grid to numpy array before reshaping
         CS = ax.contourf(x1_grid, x2_grid, y_grid, np.linspace(0., 1., 51),
-                         alpha=.8, cmap=plt.cm.get_cmap("bwr"))
+                         alpha=.8, cmap=plt.get_cmap("bwr"))
         decision_line = plt.contour(CS, levels=[0.5], colors='k')
         if add_bar:
             cbar = plt.colorbar(CS)
@@ -78,11 +78,13 @@ def plot_data(x, y, ax=None, plot_xy_range=None, x_grid=None, y_grid=None,
 
 
 def plot_two_layer_activations(model, x, y):
+    x = np.array(x)
+    y = np.array(y)
     x_grid = x_data_from_grid(min_xy=-1, max_xy=2, grid_size=1000)
-    h_data = model.hidden_layer.forward(x)
-    h_grid = model.hidden_layer.forward(x_grid)
-    y_pred_grid = model.forward(x_grid)
-    y_in_hidden_grid = model.output_layer.forward(x_grid)
+    h_data = np.array(model.hidden_layer.forward(x))
+    h_grid = np.array(model.hidden_layer.forward(x_grid))
+    y_pred_grid = np.array(model.forward(x_grid))
+    y_in_hidden_grid = np.array(model.output_layer.forward(x_grid))
 
     fig, axs = plt.subplots(2, 2)
     plot_data(x, y, ax=axs[0, 0], x_grid=x_grid, y_grid=h_grid[:, 0], plot_xy_range=[-1, 2], do_show=False,

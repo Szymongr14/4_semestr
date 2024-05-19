@@ -9,13 +9,16 @@ from visualization_utils import inspect_data, plot_data, x_data_from_grid, visua
 def relu(logits):
     return np.maximum(logits, 0)
 
+
 def sigmoid(logits):
     return 1. / (1. + np.exp(-logits))
     # return np.exp(-np.logaddexp(0, -logits))     # to samo co wyżej, ale stabilne numerycznie
 
+
 def hardlim(logits):
     return (logits > 0).astype(np.float32)
     # return np.round(sigmoid(logits))             # to samo co wyżej, bez wykorzystywania porównań i rzutowań
+
 
 def linear(logits):
     return logits
@@ -42,20 +45,38 @@ def zad1_single_neuron(student_id):
             :param x_data: wejście neuronu: np.array o rozmiarze [n_samples, n_in]
             :return: wyjście neuronu: np.array o rozmiarze [n_samples, 1]
             """
-            # TODO (0.5 point)
-            raise NotImplementedError()
+            results = []
+            for point in x_data:
+                _sum = point[0] * self.W[0] + point[1] * self.W[1] + self.b
+                results.append(self.f_act(_sum))
+            return results
+
+        def count_mse(self, features, labels) -> float:
+            return np.sum((labels - features.dot(self.W)) ** 2) / len(labels)
+
+        def print_summary(self):
+            print(f'W = {self.W}, b = {self.b}')
 
     # neuron zainicjowany losowymi wagami
     model = SingleNeuron(n_in=n_features, f_act=hardlim)
 
     # TODO: ustawienie właściwych wag (0.5 point)
-    np.gradient
-
-    # model.W[:, 0] = [w1, w2]
-    # model.b[:] = [b1]
+    threshold = 1.0e-1
+    max_iterations = 1000
+    learning_rate = 0.01
+    while True:
+        y_pred = model.forward(x)
+        print(f'Accuracy = {np.mean(y == y_pred) * 100}%')
+        mse = model.count_mse(x, y)
+        if mse < threshold or max_iterations == 0:
+            break
+        max_iterations -= 1
+        gradients = 2 / n_samples * x.T.dot(y_pred - y)
+        model.W = model.W - learning_rate * gradients
 
     # działanie i ocena modelu
     y_pred = model.forward(x)
+    model.print_summary()
     print(f'Accuracy = {np.mean(y == y_pred) * 100}%')
 
     # test na całej przestrzeni wejść (z wizualizacją)
@@ -82,27 +103,36 @@ def zad2_two_layer_net(student_id):
             self.f_act = f_act
 
         def forward(self, x_data):
-            # TODO
-            return NotImplementedError()
+            results = []
+            for point in x_data:
+                _sum = point[0] * self.W[0] + point[1] * self.W[1] + self.b
+                results.append(self.f_act(_sum))
+            return results
+
+        @staticmethod
+        def count_mse(param, y):
+            return np.sum((y - param) ** 2) / len(y)
 
     # TODO: warstwy mozna składać w wiekszy model
     class SimpleTwoLayerNetwork:
         def __init__(self, n_in, n_hidden, n_out):
-            self.hidden_layer = None
-            self.output_layer = None
+            self.hidden_layer = DenseLayer(n_in, n_hidden, sigmoid)
+            self.output_layer = DenseLayer(n_hidden, n_out, sigmoid)
 
         def forward(self, x_data):
-            raise NotImplementedError()
+            hidden_output = self.hidden_layer.forward(x_data)
+            return self.output_layer.forward(hidden_output)
 
     # model zainicjowany losowymi wagami
     model = SimpleTwoLayerNetwork(n_in=n_features, n_hidden=2, n_out=1)
 
     # TODO: ustawienie właściwych wag
-    # model.hidden_layer.W[:, 0] = None      # wagi neuronu h1
-    # model.hidden_layer.W[:, 1] = None      # wagi neuronu h2
-    # model.hidden_layer.b[:] = None         # biasy neuronów h1 i h2
-    # model.output_layer.W[:, 0] = None      # wagi neuronu wyjściowego
-    # model.output_layer.b[:] = None         # bias neuronu wyjściowego
+    model.hidden_layer.W[:, 0] = [1, 5]
+    model.hidden_layer.W[:, 1] = [0.3, 1]
+    model.hidden_layer.b[:] = [-0.27, 0.5]
+    model.output_layer.W[:, 0] = [1, 1]
+    model.output_layer.b[:] = [-0.5]
+
 
     # działanie i ocena modelu
     y_pred = model.forward(x)
@@ -116,5 +146,5 @@ if __name__ == '__main__':
 
     student_id = 193141
 
-    zad1_single_neuron(student_id)
-    # zad2_two_layer_net(student_id)
+    # zad1_single_neuron(student_id)
+    zad2_two_layer_net(student_id)
