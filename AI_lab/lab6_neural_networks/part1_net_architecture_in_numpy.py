@@ -51,28 +51,13 @@ def zad1_single_neuron(student_id):
                 results.append(self.f_act(_sum))
             return results
 
-        def count_mse(self, features, labels) -> float:
-            return np.sum((labels - features.dot(self.W)) ** 2) / len(labels)
-
         def print_summary(self):
             print(f'W = {self.W}, b = {self.b}')
 
     # neuron zainicjowany losowymi wagami
     model = SingleNeuron(n_in=n_features, f_act=hardlim)
-
-    # TODO: ustawienie właściwych wag (0.5 point)
-    threshold = 1.0e-1
-    max_iterations = 1000
-    learning_rate = 0.01
-    while True:
-        y_pred = model.forward(x)
-        print(f'Accuracy = {np.mean(y == y_pred) * 100}%')
-        mse = model.count_mse(x, y)
-        if mse < threshold or max_iterations == 0:
-            break
-        max_iterations -= 1
-        gradients = 2 / n_samples * x.T.dot(y_pred - y)
-        model.W = model.W - learning_rate * gradients
+    model.W = [-1, -7]
+    model.b = [1]
 
     # działanie i ocena modelu
     y_pred = model.forward(x)
@@ -103,21 +88,12 @@ def zad2_two_layer_net(student_id):
             self.f_act = f_act
 
         def forward(self, x_data):
-            results = []
-            for point in x_data:
-                _sum = point[0] * self.W[0] + point[1] * self.W[1] + self.b
-                results.append(self.f_act(_sum))
-            return results
+            return self.f_act(np.dot(x_data, self.W) + self.b)
 
-        @staticmethod
-        def count_mse(param, y):
-            return np.sum((y - param) ** 2) / len(y)
-
-    # TODO: warstwy mozna składać w wiekszy model
     class SimpleTwoLayerNetwork:
         def __init__(self, n_in, n_hidden, n_out):
-            self.hidden_layer = DenseLayer(n_in, n_hidden, sigmoid)
-            self.output_layer = DenseLayer(n_hidden, n_out, sigmoid)
+            self.hidden_layer = DenseLayer(n_in, n_hidden, relu)
+            self.output_layer = DenseLayer(n_hidden, n_out, hardlim)
 
         def forward(self, x_data):
             hidden_output = self.hidden_layer.forward(x_data)
@@ -127,12 +103,11 @@ def zad2_two_layer_net(student_id):
     model = SimpleTwoLayerNetwork(n_in=n_features, n_hidden=2, n_out=1)
 
     # TODO: ustawienie właściwych wag
-    model.hidden_layer.W[:, 0] = [1, 5]
-    model.hidden_layer.W[:, 1] = [0.3, 1]
-    model.hidden_layer.b[:] = [-0.27, 0.5]
-    model.output_layer.W[:, 0] = [1, 1]
-    model.output_layer.b[:] = [-0.5]
-
+    model.hidden_layer.W[:, 0] = [7, 0]  # wagi neuronu h1
+    model.hidden_layer.W[:, 1] = [-8, -1]  # wagi neuronu h2
+    model.hidden_layer.b[:] = [0.3, 2]  # biasy neuronów h1 i h2
+    model.output_layer.W[:, 0] = [2, 9]  # wagi neuronu wyjściowego
+    model.output_layer.b[:] = [-13]  # bias neuronu wyjściowego
 
     # działanie i ocena modelu
     y_pred = model.forward(x)
@@ -146,5 +121,5 @@ if __name__ == '__main__':
 
     student_id = 193141
 
-    # zad1_single_neuron(student_id)
-    zad2_two_layer_net(student_id)
+    zad1_single_neuron(student_id)
+    # zad2_two_layer_net(student_id)
