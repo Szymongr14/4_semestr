@@ -8,24 +8,26 @@
     "net8.0": []
   },
   "packageFolders": {
-    "/home/szymongrrr/.nuget/packages/": {}
+    "C:\\Users\\szymo\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/szymongrrr/GitHub/4_semestr/Platformy_Technologiczne_lab/lab9/lab9/lab9.csproj",
+      "projectUniqueName": "C:\\Users\\szymo\\Documents\\GitHub\\4_sem\\Platformy_Technologiczne_lab\\lab9\\lab9\\lab9.csproj",
       "projectName": "lab9",
-      "projectPath": "/home/szymongrrr/GitHub/4_semestr/Platformy_Technologiczne_lab/lab9/lab9/lab9.csproj",
-      "packagesPath": "/home/szymongrrr/.nuget/packages/",
-      "outputPath": "/home/szymongrrr/GitHub/4_semestr/Platformy_Technologiczne_lab/lab9/lab9/obj/",
+      "projectPath": "C:\\Users\\szymo\\Documents\\GitHub\\4_sem\\Platformy_Technologiczne_lab\\lab9\\lab9\\lab9.csproj",
+      "packagesPath": "C:\\Users\\szymo\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\szymo\\Documents\\GitHub\\4_sem\\Platformy_Technologiczne_lab\\lab9\\lab9\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/szymongrrr/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\szymo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -59,7 +61,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/home/szymongrrr/.dotnet/sdk/8.0.203/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
