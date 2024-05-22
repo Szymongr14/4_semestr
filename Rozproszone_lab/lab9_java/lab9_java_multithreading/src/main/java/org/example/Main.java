@@ -9,7 +9,7 @@ public class Main {
     private static final int PRODUCER_COUNT = 2;
 
     public static void main(String[] args) {
-        ConcurrentMagazine magazine = new ConcurrentMagazine(100);
+        ConcurrentMagazine magazine = new ConcurrentMagazine(20);
 
         ExecutorService consumers = Executors.newFixedThreadPool(CONSUMER_COUNT);
         for(int i=0;i<CONSUMER_COUNT;i++){
@@ -29,7 +29,7 @@ public class Main {
             }
         }
 
-        producers.close();
-        consumers.close();
+        producers.shutdownNow();
+        consumers.shutdownNow();
     }
 }

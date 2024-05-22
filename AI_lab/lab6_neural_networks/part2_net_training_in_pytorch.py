@@ -84,7 +84,7 @@ def training(model, x, y):
 def plot_history(history, smoothing_factor=0.99):
     plt.plot(history, c='b', alpha=0.5)
     if smoothing_factor is not None:
-        smoothed_history = [];
+        smoothed_history = []
         pv = history[0]
         for v in history:
             smoothed_history.append(smoothed := smoothing_factor * pv + (1.0 - smoothing_factor) * v)
