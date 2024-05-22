@@ -23,7 +23,7 @@ public class Consumer implements Runnable{
                     break;
             }
             try {
-                System.out.printf("Thread %d timeout: %dms\n",Thread.currentThread().threadId(), rand_time);
+                System.out.printf("Consumer thread %d timeout: %dms\n",Thread.currentThread().threadId(), rand_time);
                 Thread.sleep(rand_time);
             } catch (InterruptedException e) {
                 break;

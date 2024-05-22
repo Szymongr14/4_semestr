@@ -28,7 +28,6 @@ public class Main {
                 break;
             }
         }
-
         producers.shutdownNow();
         consumers.shutdownNow();
     }
