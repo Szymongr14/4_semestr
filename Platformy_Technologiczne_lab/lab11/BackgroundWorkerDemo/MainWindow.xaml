@@ -1,0 +1,17 @@
+﻿<Window x:Class="BackgroundWorkerDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <DockPanel VerticalAlignment="Top">
+            <Label Content="Enter a number:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,10,0,0"/>
+            <TextBox x:Name="InputTextBox" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100" Margin="0,10,0,0" />
+        </DockPanel>
+        <Button Content="Calculate Fibonacci" HorizontalAlignment="Center" VerticalAlignment="Top" Width="150" Margin="0,60,0,0" Click="CalculateFibonacci_Click" />
+        <ProgressBar x:Name="ProgressBar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="0,100,0,0" />
+        <TextBlock x:Name="ResultTextBlock" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,120,0,0" />
+    </Grid>
+</Window>
