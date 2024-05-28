@@ -4,12 +4,17 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-struct magazine_t* create_magazine(const int max_size, struct monitor_t* monitor)
+struct magazine_t* create_magazine(const int max_size, struct monitor_t* monitor, char* filename)
 {
     struct magazine_t* magazine = malloc(sizeof(struct magazine_t));
-    magazine->space = malloc(max_size * sizeof(int));
+    magazine->filename = filename;
     magazine->max_size = max_size;
     magazine->monitor = monitor;
+
+    FILE* file_ptr = fopen(filename, "w");
+    fprintf(file_ptr, "%d", 0);
+    fclose(file_ptr);
+
     return magazine;
 }
 
@@ -17,9 +22,8 @@ struct magazine_t* create_magazine(const int max_size, struct monitor_t* monitor
 void produce(struct magazine_t* magazine)
 {
     enter(magazine->monitor, LOCK_PRODUCE_MESSAGE_TYPE);
-    while(return_size(magazine) == magazine->max_size)
+    while(read_value_from_file(magazine->filename) == magazine->max_size)
     {
-        printf("PRODUCTS: %d\n", magazine->current_size);
         printf("Waiting for space\n");
         wait(magazine->monitor);
     }
@@ -32,9 +36,8 @@ void produce(struct magazine_t* magazine)
 void consume(const struct magazine_t* magazine)
 {
     enter(magazine->monitor, LOCK_CONSUME_MESSAGE_TYPE);
-    while(return_size(magazine) == 0)
+    while(read_value_from_file(magazine->filename) == 0)
     {
-        printf("PRODUCTS: %d\n", magazine->current_size);
         printf("Waiting for product\n");
         wait(magazine->monitor);
     }
@@ -47,43 +50,31 @@ void consume(const struct magazine_t* magazine)
 void modify_magazine(const struct magazine_t* magazine, const int operation)
 {
     enter(magazine->monitor, LOCK_MODIFY_MESSAGE_TYPE);
-    printf("modify");
+    const int current_value = read_value_from_file(magazine->filename);
+    FILE* file = fopen(magazine->filename, "w");
     switch (operation)
     {
-    case 1:
-        for(int i = 0; i < magazine->max_size; i++)
-        {
-            if(magazine->space[i] == 0)
-            {
-                magazine->space[i] = 1;
-                break;
-            }
-        }
-        break;
-
-    case 2:
-        for(int i = 0; i < magazine->max_size; i++)
-        {
-            if(magazine->space[i] == 1)
-            {
-                magazine->space[i] = 0;
-                break;
-            }
-        }
-        break;
+        case 1:
+            fprintf(file, "%d", current_value + 1);
+            break;
+        case 2:
+            fprintf(file, "%d", current_value - 1);
+            break;
     }
+    // fflush(file);
+    fclose(file);
     leave(magazine->monitor, LOCK_MODIFY_MESSAGE_TYPE);
 }
 
-int return_size(const struct magazine_t* magazine)
-{
-    int counter = 0;
-    for (int i = 0; i < magazine->max_size; i++)
-    {
-        if(magazine->space[i] == 1)
-        {
-            counter++;
-        }
+int read_value_from_file(const char* filename) {
+    FILE* file = fopen(filename, "r");
+    if (file == NULL) {
+        printf("Error opening file!\n");
+        exit(1);
     }
-    return counter;
+    int value;
+    fscanf(file, "%d", &value);
+    fclose(file);
+    printf("READ_VALUE: %d\n", value);
+    return value;
 }
