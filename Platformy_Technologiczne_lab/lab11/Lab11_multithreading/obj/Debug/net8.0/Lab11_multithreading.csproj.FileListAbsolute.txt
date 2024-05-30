@@ -1,0 +1,14 @@
+C:\Users\szymo\RiderProjects\Lab11_multithreading\Lab11_multithreading\bin\Debug\net8.0\Lab11_multithreading.exe
+C:\Users\szymo\RiderProjects\Lab11_multithreading\Lab11_multithreading\bin\Debug\net8.0\Lab11_multithreading.deps.json
+C:\Users\szymo\RiderProjects\Lab11_multithreading\Lab11_multithreading\bin\Debug\net8.0\Lab11_multithreading.runtimeconfig.json
+C:\Users\szymo\RiderProjects\Lab11_multithreading\Lab11_multithreading\bin\Debug\net8.0\Lab11_multithreading.dll
+C:\Users\szymo\RiderProjects\Lab11_multithreading\Lab11_multithreading\bin\Debug\net8.0\Lab11_multithreading.pdb
+C:\Users\szymo\RiderProjects\Lab11_multithreading\Lab11_multithreading\obj\Debug\net8.0\Lab11_multithreading.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\szymo\RiderProjects\Lab11_multithreading\Lab11_multithreading\obj\Debug\net8.0\Lab11_multithreading.AssemblyInfoInputs.cache
+C:\Users\szymo\RiderProjects\Lab11_multithreading\Lab11_multithreading\obj\Debug\net8.0\Lab11_multithreading.AssemblyInfo.cs
+C:\Users\szymo\RiderProjects\Lab11_multithreading\Lab11_multithreading\obj\Debug\net8.0\Lab11_multithreading.csproj.CoreCompileInputs.cache
+C:\Users\szymo\RiderProjects\Lab11_multithreading\Lab11_multithreading\obj\Debug\net8.0\Lab11_multithreading.dll
+C:\Users\szymo\RiderProjects\Lab11_multithreading\Lab11_multithreading\obj\Debug\net8.0\refint\Lab11_multithreading.dll
+C:\Users\szymo\RiderProjects\Lab11_multithreading\Lab11_multithreading\obj\Debug\net8.0\Lab11_multithreading.pdb
+C:\Users\szymo\RiderProjects\Lab11_multithreading\Lab11_multithreading\obj\Debug\net8.0\Lab11_multithreading.genruntimeconfig.cache
+C:\Users\szymo\RiderProjects\Lab11_multithreading\Lab11_multithreading\obj\Debug\net8.0\ref\Lab11_multithreading.dll

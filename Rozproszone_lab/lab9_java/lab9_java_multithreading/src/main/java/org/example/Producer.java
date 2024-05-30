@@ -15,24 +15,21 @@ public class Producer implements Runnable{
             switch (rand) {
                 case 0:
                     Product shoes = new Shoes(40);
-                    magazine.produce(shoes);
+                    if(magazine.produce(shoes) < 0) return;
                     break;
                 case 1:
                     Product shirt = new Shirt("M");
-                    magazine.produce(shirt);
+                    if(magazine.produce(shirt) < 0) return;
                     break;
                 default:
                     break;
             }
             try {
+                System.out.printf("Producer thread %d timeout: %dms\n",Thread.currentThread().threadId(), rand_time);
                 Thread.sleep(rand_time);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                break;
             }
         }
-    }
-
-    public ConcurrentMagazine getMagazine() {
-        return magazine;
     }
 }
