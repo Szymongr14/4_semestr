@@ -47,17 +47,57 @@ if isfield(energy, country) && isfield(energy.(country), source)
 
     % Pętla po wielomianach różnych stopni
     for i = 1:length(degrees)
+        p = my_polyfit(x_coarse , y_yearly , degrees(i));
+        y_approximation{i} = polyval(p, x_fine);
+        y_approximation_coarse =  polyval(p, x_coarse);
+
+        squared_errors = (y_approximation_coarse - y_yearly).^2;
+        mse(i) = mean(squared_errors);
     end
 
 else
     disp(['Dane dla (country=', country, ') oraz (source=', source, ') nie są dostępne.']);
 end
 
+subplot(2,1,1);
+hold on;
+plot( x_coarse, y_yearly );
+for i = 1:length(degrees)
+    plot(x_fine, y_approximation{i});
 end
 
-function p = my_polyfit(x, y, deg)
-    % creating Vandermonde matrix
-    V = ones(length(x), deg+1);
-    V(:, 1) = ones(length(x), 1);
-    for i = 
+ title('Coal energy production for India');
+ xlabel('x');
+ ylabel('y');
+ legend('original','1 nodes', '2 nodes', '3 nodes', '4 nodes', 'Location', 'best');
+ hold off
+
+subplot(2,1,2);
+mse = mse';
+bar(mse); 
+title('Mean square error');  
+set(gca, 'XTickLabel', degrees);
+xlabel('polynomial degrees'); 
+ylabel('MSE value');
+print -dpng zadanie3.png
+
 end
+
+
+function p = my_polyfit(x, y, deg)
+    V = ones(length(x), deg+1);
+    for i=1:length(x)
+        for j=1:deg+1
+            if j == deg+1
+                V(i,j) = 1;
+                continue;
+            end
+            V(i,j) = power(x(i), deg+1-j);
+        end
+    end
+    
+    A = V'*V;
+   b = V'*y;
+   p = A\b
+end
+
