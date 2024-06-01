@@ -10,7 +10,7 @@
 #include "magazine.h"
 
 #define MAX_MAGAZINE_SIZE 2
-#define FILE_NAME "tmp_file"
+#define FILE_NAME "tmp_filecreting"
 
 int main()
 {
