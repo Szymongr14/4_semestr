@@ -1,0 +1,89 @@
+{
+  "version": 3,
+  "targets": {
+    "net8.0": {
+      "MessageProtocolLib/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/MessageProtocolLib.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MessageProtocolLib.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MessageProtocolLib/1.0.0": {
+      "type": "project",
+      "path": "../MessageProtocolLib/MessageProtocolLib.csproj",
+      "msbuildProject": "../MessageProtocolLib/MessageProtocolLib.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net8.0": [
+      "MessageProtocolLib >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "/home/szymongrrr/.nuget/packages/": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "/home/szymongrrr/GitHub/4_semestr/Platformy_Technologiczne_lab/lab12_server_client/server/server.csproj",
+      "projectName": "server",
+      "projectPath": "/home/szymongrrr/GitHub/4_semestr/Platformy_Technologiczne_lab/lab12_server_client/server/server.csproj",
+      "packagesPath": "/home/szymongrrr/.nuget/packages/",
+      "outputPath": "/home/szymongrrr/GitHub/4_semestr/Platformy_Technologiczne_lab/lab12_server_client/server/obj/",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "/home/szymongrrr/.nuget/NuGet/NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net8.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "projectReferences": {
+            "/home/szymongrrr/GitHub/4_semestr/Platformy_Technologiczne_lab/lab12_server_client/MessageProtocolLib/MessageProtocolLib.csproj": {
+              "projectPath": "/home/szymongrrr/GitHub/4_semestr/Platformy_Technologiczne_lab/lab12_server_client/MessageProtocolLib/MessageProtocolLib.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net8.0": {
+        "targetAlias": "net8.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "/home/szymongrrr/.dotnet/sdk/8.0.203/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
