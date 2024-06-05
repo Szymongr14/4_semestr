@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Lab11_multithreading
-build_property.ProjectDir = C:\Users\szymo\Documents\GitHub\4_sem\Platformy_Technologiczne_lab\lab11\Lab11_multithreading\
+build_property.ProjectDir = C:\Users\szymo\Documents\GitHub\4_semestr\Platformy_Technologiczne_lab\lab11\Lab11_multithreading\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

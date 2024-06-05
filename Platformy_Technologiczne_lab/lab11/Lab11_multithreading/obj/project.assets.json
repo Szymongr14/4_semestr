@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\szymo\\Documents\\GitHub\\4_sem\\Platformy_Technologiczne_lab\\lab11\\Lab11_multithreading\\Lab11_multithreading.csproj",
+      "projectUniqueName": "C:\\Users\\szymo\\Documents\\GitHub\\4_semestr\\Platformy_Technologiczne_lab\\lab11\\Lab11_multithreading\\Lab11_multithreading.csproj",
       "projectName": "Lab11_multithreading",
-      "projectPath": "C:\\Users\\szymo\\Documents\\GitHub\\4_sem\\Platformy_Technologiczne_lab\\lab11\\Lab11_multithreading\\Lab11_multithreading.csproj",
+      "projectPath": "C:\\Users\\szymo\\Documents\\GitHub\\4_semestr\\Platformy_Technologiczne_lab\\lab11\\Lab11_multithreading\\Lab11_multithreading.csproj",
       "packagesPath": "C:\\Users\\szymo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\szymo\\Documents\\GitHub\\4_sem\\Platformy_Technologiczne_lab\\lab11\\Lab11_multithreading\\obj\\",
+      "outputPath": "C:\\Users\\szymo\\Documents\\GitHub\\4_semestr\\Platformy_Technologiczne_lab\\lab11\\Lab11_multithreading\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\szymo\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -61,7 +61,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
