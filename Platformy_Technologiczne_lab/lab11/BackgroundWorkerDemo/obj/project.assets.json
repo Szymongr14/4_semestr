@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\szymo\\Documents\\GitHub\\4_sem\\Platformy_Technologiczne_lab\\lab11\\BackgroundWorkerDemo\\BackgroundWorkerDemo.csproj",
+      "projectUniqueName": "C:\\Users\\szymo\\Documents\\GitHub\\4_semestr\\Platformy_Technologiczne_lab\\lab11\\BackgroundWorkerDemo\\BackgroundWorkerDemo.csproj",
       "projectName": "BackgroundWorkerDemo",
-      "projectPath": "C:\\Users\\szymo\\Documents\\GitHub\\4_sem\\Platformy_Technologiczne_lab\\lab11\\BackgroundWorkerDemo\\BackgroundWorkerDemo.csproj",
+      "projectPath": "C:\\Users\\szymo\\Documents\\GitHub\\4_semestr\\Platformy_Technologiczne_lab\\lab11\\BackgroundWorkerDemo\\BackgroundWorkerDemo.csproj",
       "packagesPath": "C:\\Users\\szymo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\szymo\\Documents\\GitHub\\4_sem\\Platformy_Technologiczne_lab\\lab11\\BackgroundWorkerDemo\\obj\\",
+      "outputPath": "C:\\Users\\szymo\\Documents\\GitHub\\4_semestr\\Platformy_Technologiczne_lab\\lab11\\BackgroundWorkerDemo\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\szymo\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -64,7 +64,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

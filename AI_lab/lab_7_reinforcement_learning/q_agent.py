@@ -11,11 +11,11 @@ class QAgent(Agent):
 
         # hyperparams
         # TODO ustaw te parametry na sensowne wartości
-        self.lr = 0.1  # współczynnik uczenia (learning rate)
+        self.lr = 0.01  # współczynnik uczenia (learning rate)
         self.gamma = 0.9  # współczynnik dyskontowania
-        self.epsilon = 0.5  # epsilon (p-wo akcji losowej)
-        self.eps_decrement = 0.001  # wartość, o którą zmniejsza się epsilon po każdym kroku
-        self.eps_min = 0.01  # końcowa wartość epsilon, poniżej którego już nie jest zmniejszane
+        self.epsilon = 0.7  # epsilon (p-wo akcji losowej)
+        self.eps_decrement = 0.0001  # wartość, o którą zmniejsza się epsilon po każdym kroku
+        self.eps_min = 0.1  # końcowa wartość epsilon, poniżej którego już nie jest zmniejszane
 
         self.action_space = [i for i in range(n_actions)]
         self.n_actions = n_actions

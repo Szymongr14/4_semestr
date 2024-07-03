@@ -1,0 +1,12 @@
+/home/szymongrrr/GitHub/4_semestr/Platformy_Technologiczne_lab/lab12_server_client/MessageProtocolLib/bin/Debug/net8.0/MessageProtocolLib.deps.json
+/home/szymongrrr/GitHub/4_semestr/Platformy_Technologiczne_lab/lab12_server_client/MessageProtocolLib/bin/Debug/net8.0/MessageProtocolLib.dll
+/home/szymongrrr/GitHub/4_semestr/Platformy_Technologiczne_lab/lab12_server_client/MessageProtocolLib/bin/Debug/net8.0/MessageProtocolLib.pdb
+/home/szymongrrr/GitHub/4_semestr/Platformy_Technologiczne_lab/lab12_server_client/MessageProtocolLib/obj/Debug/net8.0/MessageProtocolLib.GeneratedMSBuildEditorConfig.editorconfig
+/home/szymongrrr/GitHub/4_semestr/Platformy_Technologiczne_lab/lab12_server_client/MessageProtocolLib/obj/Debug/net8.0/MessageProtocolLib.AssemblyInfoInputs.cache
+/home/szymongrrr/GitHub/4_semestr/Platformy_Technologiczne_lab/lab12_server_client/MessageProtocolLib/obj/Debug/net8.0/MessageProtocolLib.AssemblyInfo.cs
+/home/szymongrrr/GitHub/4_semestr/Platformy_Technologiczne_lab/lab12_server_client/MessageProtocolLib/obj/Debug/net8.0/MessageProtocolLib.csproj.CoreCompileInputs.cache
+/home/szymongrrr/GitHub/4_semestr/Platformy_Technologiczne_lab/lab12_server_client/MessageProtocolLib/obj/Debug/net8.0/MessageProtocolLib.sourcelink.json
+/home/szymongrrr/GitHub/4_semestr/Platformy_Technologiczne_lab/lab12_server_client/MessageProtocolLib/obj/Debug/net8.0/MessageProtocolLib.dll
+/home/szymongrrr/GitHub/4_semestr/Platformy_Technologiczne_lab/lab12_server_client/MessageProtocolLib/obj/Debug/net8.0/refint/MessageProtocolLib.dll
+/home/szymongrrr/GitHub/4_semestr/Platformy_Technologiczne_lab/lab12_server_client/MessageProtocolLib/obj/Debug/net8.0/MessageProtocolLib.pdb
+/home/szymongrrr/GitHub/4_semestr/Platformy_Technologiczne_lab/lab12_server_client/MessageProtocolLib/obj/Debug/net8.0/ref/MessageProtocolLib.dll
